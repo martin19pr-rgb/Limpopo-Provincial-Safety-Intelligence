@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Deep cyber-midnight dark palette ────────────────────── */
+    --background: 222 42% 4%;
+    --foreground: 210 30% 93%;
+    --card: 222 36% 7%;
+    --card-foreground: 210 30% 93%;
+    --popover: 222 36% 7%;
+    --popover-foreground: 210 30% 93%;
+
+    --primary: 145 65% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 224 28% 12%;
+    --secondary-foreground: 210 20% 80%;
+
+    --muted: 224 24% 10%;
+    --muted-foreground: 220 15% 48%;
+
+    --accent: 43 96% 54%;
+    --accent-foreground: 222 42% 4%;
+
+    --destructive: 0 75% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 224 24% 14%;
+    --input: 224 24% 14%;
+    --ring: 145 65% 42%;
+    --radius: 0.5rem;
+
+    /* ── Status colours ──────────────────────────────────────── */
+    --emergency: 0 85% 52%;
+    --emergency-foreground: 0 0% 100%;
+    --warning: 43 96% 54%;
+    --warning-foreground: 222 42% 4%;
+    --success: 145 65% 42%;
+    --success-foreground: 0 0% 100%;
+    --info: 196 100% 52%;
+    --info-foreground: 0 0% 100%;
+    --online: 145 65% 42%;
+    --offline: 0 75% 52%;
+    --standby: 43 96% 54%;
+
+    /* ── SA flag colours ─────────────────────────────────────── */
+    --sa-green: 145 65% 42%;
+    --sa-gold: 43 96% 54%;
+    --sa-red: 0 75% 52%;
+    --sa-blue: 196 100% 52%;
+    --sa-black: 222 42% 4%;
+    --sa-white: 0 0% 100%;
+
+    /* ── Department accent colours ───────────────────────────── */
+    --dept-premier: 43 96% 54%;
+    --dept-saps: 217 90% 52%;
+    --dept-ems: 0 85% 52%;
+    --dept-transport: 43 96% 54%;
+    --dept-health: 145 65% 42%;
+    --dept-roads: 30 72% 48%;
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    --sidebar-background: 222 48% 3%;
+    --sidebar-foreground: 210 20% 82%;
+    --sidebar-primary: 145 65% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 224 30% 8%;
+    --sidebar-accent-foreground: 210 20% 82%;
+    --sidebar-border: 224 28% 11%;
+    --sidebar-ring: 145 65% 42%;
+
+    --font-display: 'JetBrains Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  .light {
+    --background: 220 30% 97%;
+    --foreground: 222 40% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 40% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 40% 10%;
+    --primary: 145 65% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 18% 92%;
+    --secondary-foreground: 222 40% 15%;
+    --muted: 220 14% 93%;
+    --muted-foreground: 220 12% 40%;
+    --accent: 43 96% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 16% 88%;
+    --input: 220 16% 88%;
+    --ring: 145 65% 32%;
+
+    --emergency: 0 85% 50%;
+    --emergency-foreground: 0 0% 100%;
+    --warning: 43 96% 45%;
+    --warning-foreground: 0 0% 100%;
+    --success: 145 65% 32%;
+    --success-foreground: 0 0% 100%;
+    --info: 196 100% 40%;
+    --info-foreground: 0 0% 100%;
+    --online: 145 65% 32%;
+    --offline: 0 72% 50%;
+    --standby: 43 96% 45%;
+
+    --sa-green: 145 65% 32%;
+    --sa-gold: 43 96% 45%;
+    --sa-red: 0 72% 50%;
+    --sa-blue: 196 100% 40%;
+    --sa-black: 222 40% 10%;
+    --sa-white: 0 0% 100%;
+
+    --dept-premier: 43 96% 45%;
+    --dept-saps: 217 90% 45%;
+    --dept-ems: 0 85% 50%;
+    --dept-transport: 43 96% 45%;
+    --dept-health: 145 65% 32%;
+    --dept-roads: 30 72% 42%;
+
+    --sidebar-background: 220 30% 98%;
+    --sidebar-foreground: 222 40% 15%;
+    --sidebar-primary: 145 65% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 18% 94%;
+    --sidebar-accent-foreground: 222 40% 15%;
+    --sidebar-border: 220 16% 90%;
+    --sidebar-ring: 145 65% 32%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(31, 60, 120, 0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 90% 80%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 10% 70%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .dashboard-card {
+    @apply bg-card border border-border rounded-lg p-4;
+  }
+
+  /* ── Glassmorphic cards — rich midnight-indigo palette ────── */
+  .glass-card {
+    background: linear-gradient(
+      135deg,
+      rgba(12, 20, 46, 0.72) 0%,
+      rgba(8, 16, 36, 0.78) 50%,
+      rgba(10, 18, 42, 0.72) 100%
+    );
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid rgba(99, 179, 237, 0.08);
+    border-top: 1px solid rgba(147, 210, 255, 0.14);
+    border-radius: 18px;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.45),
+      0 1px 0 rgba(147, 210, 255, 0.06) inset;
+  }
+
+  .glass-card-light {
+    background: rgba(255, 255, 255, 0.70);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .glass-panel {
+    background: linear-gradient(
+      135deg,
+      rgba(6, 12, 28, 0.85) 0%,
+      rgba(4, 10, 24, 0.90) 100%
+    );
+    backdrop-filter: blur(28px) saturate(1.5);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    border: 1px solid rgba(99, 179, 237, 0.06);
+  }
+
+  .glass-badge {
+    background: rgba(99, 179, 237, 0.07);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(147, 210, 255, 0.15);
+    border-radius: 999px;
+  }
+
+  /* Vibrant indigo-cyan gradient border */
+  .futuristic-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(rgba(8, 16, 36, 0.85), rgba(8, 16, 36, 0.85)) padding-box,
+      linear-gradient(135deg,
+        hsl(196 100% 52%),
+        hsl(145 65% 42%),
+        hsl(260 80% 65%),
+        hsl(196 100% 52%)
+      ) border-box;
+  }
+
+  /* ── Glow effects ─────────────────────────────────────────── */
+  .ai-glow {
+    box-shadow:
+      0 0 18px rgba(16, 185, 129, 0.18),
+      0 0 50px rgba(16, 185, 129, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(147, 210, 255, 0.07);
+  }
+  .critical-glow {
+    box-shadow:
+      0 0 22px rgba(239, 68, 68, 0.45),
+      0 0 70px rgba(239, 68, 68, 0.15),
+      inset 0 0 30px rgba(239, 68, 68, 0.05);
+  }
+  .info-glow {
+    box-shadow:
+      0 0 22px rgba(56, 189, 248, 0.35),
+      0 0 70px rgba(56, 189, 248, 0.12),
+      inset 0 0 30px rgba(56, 189, 248, 0.04);
+  }
+  .violet-glow {
+    box-shadow:
+      0 0 22px rgba(139, 92, 246, 0.35),
+      0 0 70px rgba(139, 92, 246, 0.12);
+  }
+  .gold-glow {
+    box-shadow:
+      0 0 22px rgba(250, 204, 21, 0.35),
+      0 0 70px rgba(250, 204, 21, 0.12);
+  }
+
+  /* ── Holographic shimmer ──────────────────────────────────── */
+  .holographic {
+    background: linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0.07) 0%,
+      rgba(56, 189, 248, 0.05) 20%,
+      rgba(139, 92, 246, 0.06) 40%,
+      rgba(250, 204, 21, 0.04) 60%,
+      rgba(56, 189, 248, 0.05) 80%,
+      rgba(16, 185, 129, 0.07) 100%
+    );
+    background-size: 200% 200%;
+    animation: holographic-shift 5s ease infinite alternate;
+  }
+  @keyframes holographic-shift {
+    0%   { background-position: 0% 0%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 100%; }
+  }
+
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(56, 189, 248, 0.025) 50%,
+      transparent 100%
+    );
+    animation: scanline 4s linear infinite;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* ── Gradient text ────────────────────────────────────────── */
+  .ai-text {
+    background: linear-gradient(135deg, hsl(145 65% 48%), hsl(196 100% 58%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .blockchain-text {
+    background: linear-gradient(135deg, hsl(260 80% 72%), hsl(196 100% 58%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cyber-text {
+    background: linear-gradient(135deg, hsl(196 100% 58%), hsl(217 90% 62%), hsl(260 80% 72%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Status dots ──────────────────────────────────────────── */
+  .status-dot {
+    @apply w-2 h-2 rounded-full inline-block;
+  }
+  .status-dot-online  { @apply bg-success; }
+  .status-dot-offline { @apply bg-destructive; }
+  .status-dot-standby { @apply bg-accent; }
+
+  .kpi-value {
+    font-family: var(--font-display);
+    @apply text-3xl font-bold tracking-tight;
+  }
+
+  /* ── LED Billboard ────────────────────────────────────────── */
+  .led-billboard {
+    background: linear-gradient(135deg, rgba(10, 18, 42, 0.90), rgba(6, 14, 32, 0.95));
+    border: 2px solid rgba(250, 204, 21, 0.50);
+    @apply rounded-lg p-5 relative overflow-hidden;
+    box-shadow: 0 0 30px rgba(250, 204, 21, 0.12), inset 0 0 40px rgba(250, 204, 21, 0.04);
+  }
+  .led-billboard::before {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.06) 0%, transparent 60%);
+  }
+  .led-text {
+    font-family: var(--font-display);
+    @apply text-accent font-bold tracking-widest uppercase;
+    text-shadow: 0 0 14px rgba(250, 204, 21, 0.7), 0 0 36px rgba(250, 204, 21, 0.35);
+  }
+
+  /* ── Traffic light ────────────────────────────────────────── */
+  .traffic-light {
+    background: linear-gradient(180deg, rgba(10, 18, 42, 0.90), rgba(6, 14, 32, 0.95));
+    @apply flex flex-col items-center gap-2 border border-border rounded-xl p-3;
+  }
+  .traffic-bulb {
+    @apply w-6 h-6 rounded-full border-2 transition-all duration-500;
+  }
+  .traffic-bulb-red   { @apply border-destructive/60; }
+  .traffic-bulb-red.active   { @apply bg-destructive; box-shadow: 0 0 14px rgba(239,68,68,0.7); }
+  .traffic-bulb-amber { @apply border-accent/60; }
+  .traffic-bulb-amber.active { @apply bg-accent; box-shadow: 0 0 14px rgba(250,204,21,0.7); }
+  .traffic-bulb-green { @apply border-success/60; }
+  .traffic-bulb-green.active { @apply bg-success; box-shadow: 0 0 14px rgba(16,185,129,0.7); }
+
+  .pulse-live {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  .scanline {
+    background: linear-gradient(transparent 0%, rgba(56, 189, 248, 0.025) 50%, transparent 100%);
+    animation: scanline 4s linear infinite;
+  }
+
+  /* ── Neon text glows ──────────────────────────────────────── */
+  .neon-green {
+    text-shadow: 0 0 8px rgba(16,185,129,0.65), 0 0 22px rgba(16,185,129,0.35);
+  }
+  .neon-blue {
+    text-shadow: 0 0 8px rgba(56,189,248,0.65), 0 0 22px rgba(56,189,248,0.35);
+  }
+  .neon-gold {
+    text-shadow: 0 0 8px rgba(250,204,21,0.65), 0 0 22px rgba(250,204,21,0.35);
+  }
+  .neon-violet {
+    text-shadow: 0 0 8px rgba(139,92,246,0.65), 0 0 22px rgba(139,92,246,0.35);
+  }
+
+  /* ── Department page backgrounds — vivid gradient washes ──── */
+  .dept-bg-premier {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(250,204,21,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 0% 100%, rgba(250,204,21,0.04) 0%, transparent 60%);
+  }
+  .dept-bg-saps {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 100% 100%, rgba(99,102,241,0.07) 0%, transparent 60%);
+  }
+  .dept-bg-ems {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(239,68,68,0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 0% 100%, rgba(239,68,68,0.05) 0%, transparent 60%);
+  }
+  .dept-bg-transport {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(250,204,21,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 100% 100%, rgba(56,189,248,0.05) 0%, transparent 60%);
+  }
+  .dept-bg-health {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(16,185,129,0.09) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 0% 100%, rgba(16,185,129,0.04) 0%, transparent 60%);
+  }
+  .dept-bg-roads {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(234,88,12,0.09) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 100% 100%, rgba(250,204,21,0.05) 0%, transparent 60%);
+  }
+  .dept-bg-command {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(56,189,248,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 0% 80%, rgba(16,185,129,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 100% 80%, rgba(99,102,241,0.05) 0%, transparent 50%);
+  }
+}
+
+/* ── Keyframe animations ──────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes led-scroll {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-led-scroll {
+  animation: led-scroll 8s linear infinite;
+}
+
+/* ── Global scrollbar styling ─────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(6, 12, 28, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 179, 237, 0.22);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 179, 237, 0.40);
+}
