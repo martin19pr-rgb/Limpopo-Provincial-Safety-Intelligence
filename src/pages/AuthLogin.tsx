@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Fingerprint, Eye, Mail, Lock, AlertTriangle, CheckCircle, Loader2, Scan } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { signIn, signUp, getSession } from '@/lib/auth';
 import coatOfArms from '@/assets/emblem-sa-coat-of-arms.png';
 
 type AuthMode = 'login' | 'signup' | 'biometric' | 'otp';
@@ -18,22 +18,18 @@ export default function AuthLogin() {
   const [scanProgress, setScanProgress] = useState(0);
   const navigate = useNavigate();
 
-  // Check existing session
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (session) navigate('/');
-    });
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) navigate('/');
-    });
+    const session = getSession();
+    if (session) navigate('/');
   }, [navigate]);
 
   const handleLogin = async () => {
     if (!email || !password) return toast.error('Please enter email and password');
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    await new Promise(r => setTimeout(r, 600));
+    const { error } = signIn(email, password);
     setLoading(false);
-    if (error) return toast.error(error.message);
+    if (error) return toast.error(error);
     toast.success('Authentication verified — Welcome, Official');
     navigate('/');
   };
@@ -41,29 +37,24 @@ export default function AuthLogin() {
   const handleSignup = async () => {
     if (!email || !password || !govId) return toast.error('All fields required');
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: window.location.origin, data: { gov_id: govId } },
-    });
+    await new Promise(r => setTimeout(r, 600));
+    const { error } = signUp(email, password, govId);
     setLoading(false);
-    if (error) return toast.error(error.message);
-    toast.success('Verification email sent — check your inbox');
-    setMode('login');
+    if (error) return toast.error(error);
+    toast.success('Registration successful — Welcome, Official');
+    navigate('/');
   };
 
   const handleBiometric = async () => {
     setBiometricPhase('scanning');
     setScanProgress(0);
 
-    // Simulate biometric scan with progress
     const interval = setInterval(() => {
       setScanProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval);
           setBiometricPhase('verified');
           setTimeout(() => {
-            // Try WebAuthn if available
             if (window.PublicKeyCredential) {
               toast.success('Biometric verified — proceeding to authentication');
               setBiometricPhase(null);
@@ -90,7 +81,6 @@ export default function AuthLogin() {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Animated background grid */}
       <div className="absolute inset-0 opacity-10">
         <svg className="w-full h-full">
           {[...Array(20)].map((_, i) => (
@@ -114,7 +104,6 @@ export default function AuthLogin() {
         </svg>
       </div>
 
-      {/* Pulsing security orb */}
       <motion.div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full"
         style={{ background: 'radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 70%)' }}
@@ -128,7 +117,6 @@ export default function AuthLogin() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: 'spring', stiffness: 150, damping: 20 }}
       >
-        {/* Header */}
         <div className="text-center mb-8">
           <motion.div
             className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-card border-2 border-primary/30 flex items-center justify-center overflow-hidden"
@@ -154,9 +142,7 @@ export default function AuthLogin() {
           </motion.div>
         </div>
 
-        {/* Auth Card */}
         <div className="bg-card/80 backdrop-blur-xl border-2 border-border rounded-2xl overflow-hidden">
-          {/* Mode Tabs */}
           <div className="flex border-b border-border">
             {[
               { key: 'login' as AuthMode, label: 'Login', icon: Lock },
@@ -178,7 +164,6 @@ export default function AuthLogin() {
 
           <div className="p-6">
             <AnimatePresence mode="wait">
-              {/* LOGIN */}
               {mode === 'login' && (
                 <motion.div key="login" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-4">
                   <div>
@@ -216,13 +201,11 @@ export default function AuthLogin() {
                 </motion.div>
               )}
 
-              {/* BIOMETRIC */}
               {mode === 'biometric' && (
                 <motion.div key="biometric" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6">
                   <div className="text-center">
                     <p className="text-xs text-muted-foreground mb-6">Place your finger on the sensor or look at the camera</p>
 
-                    {/* Fingerprint Scanner */}
                     <div className="relative w-32 h-32 mx-auto mb-4">
                       <motion.div
                         className="absolute inset-0 rounded-full border-2 border-primary/20"
@@ -257,7 +240,7 @@ export default function AuthLogin() {
                     )}
                     {biometricPhase === 'verified' && (
                       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-primary font-display font-bold">
-                        ✅ BIOMETRIC VERIFIED
+                        BIOMETRIC VERIFIED
                       </motion.p>
                     )}
 
@@ -285,7 +268,6 @@ export default function AuthLogin() {
                 </motion.div>
               )}
 
-              {/* SIGNUP */}
               {mode === 'signup' && (
                 <motion.div key="signup" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-4">
                   <div>
@@ -330,7 +312,6 @@ export default function AuthLogin() {
           </div>
         </div>
 
-        {/* Audit Trail */}
         <motion.div
           className="mt-6 bg-card/60 backdrop-blur border border-border rounded-xl p-4"
           initial={{ opacity: 0, y: 10 }}

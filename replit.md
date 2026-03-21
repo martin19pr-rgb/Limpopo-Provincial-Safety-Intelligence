@@ -12,7 +12,8 @@ A government dashboard application for the Limpopo Provincial Safety Intelligenc
 - **Maps**: Leaflet + React Leaflet
 - **Charts**: Recharts
 - **Animations**: Framer Motion
-- **Auth**: Supabase Auth (email/password + biometric UI)
+- **Auth**: Local session-based auth (localStorage) via `src/lib/auth.ts`
+- **Real-time**: Firebase Firestore + Realtime Database
 - **Notifications**: Sonner
 
 ## Structure
@@ -35,19 +36,17 @@ src/
   components/         # Shared UI components
     DashboardLayout.tsx
     ui/               # Shadcn/UI primitives
-  integrations/
-    supabase/         # Supabase client + types
+  lib/
+    auth.ts           # Local session auth (replaces Supabase Auth)
+    firebase.ts       # Firebase real-time integration
   data/
     mockData.ts       # Static mock data
   assets/             # Government emblems & images
 ```
 
-## Environment Variables
+## Authentication
 
-Set via Replit environment panel:
-- `VITE_SUPABASE_URL` — Supabase project URL
-- `VITE_SUPABASE_PUBLISHABLE_KEY` — Supabase anon/public key
-- `VITE_SUPABASE_PROJECT_ID` — Supabase project ID
+Auth is handled locally via `src/lib/auth.ts` using `localStorage`. No external auth provider is required. Sessions persist across page reloads.
 
 ## Running the App
 
@@ -58,6 +57,7 @@ npm run build  # Production build
 
 ## Notes
 
-- Supabase is used only for authentication (no custom database tables)
 - All dashboard data comes from `src/data/mockData.ts`
+- Firebase is configured with hardcoded credentials in `src/lib/firebase.ts` for real-time updates
 - The app runs on port 5000 for Replit webview compatibility
+- Supabase has been removed — auth is now fully local

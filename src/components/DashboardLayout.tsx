@@ -6,7 +6,7 @@ import {
   LayoutDashboard, ChevronLeft, ChevronRight, Bell, Wifi, Satellite, Building2,
   Sun, Moon, Clock, LogIn, LogOut
 } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
+import { signOut } from '@/lib/auth';
 import { useTheme } from './ThemeProvider';
 import OfficialEmblem from './OfficialEmblem';
 
@@ -91,8 +91,8 @@ export default function DashboardLayout({ children, title, deptBg }: { children:
             {!collapsed && <span>Login / Register</span>}
           </Link>
           <button
-            onClick={async () => {
-              await supabase.auth.signOut();
+            onClick={() => {
+              signOut();
               window.location.href = '/login';
             }}
             className="flex items-center gap-3 px-3 py-2 rounded-md text-xs text-muted-foreground hover:bg-sidebar-accent/50 w-full"
