@@ -41,9 +41,9 @@ export default function DashboardLayout({ children, title, deptBg }: { children:
           <OfficialEmblem department="command" size="sm" />
           {!collapsed && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="overflow-hidden">
-              <p className="text-[10px] font-display font-bold text-primary leading-tight tracking-wider">PROVINCIAL SAFETY</p>
+              <p className="text-[10px] font-display font-bold text-primary leading-tight tracking-wider">NATIONAL SAFETY</p>
               <p className="text-[9px] font-display font-bold text-accent leading-tight tracking-widest">INTELLIGENCE</p>
-              <p className="text-[8px] text-muted-foreground leading-tight mt-0.5">Limpopo • Republic of South Africa</p>
+              <p className="text-[8px] text-muted-foreground leading-tight mt-0.5">Maseru • Kingdom of Lesotho</p>
             </motion.div>
           )}
         </div>
@@ -70,7 +70,7 @@ export default function DashboardLayout({ children, title, deptBg }: { children:
 
         {!collapsed && (
           <div className="px-3 py-2 mx-2 mb-2 rounded-md bg-primary/5 border border-primary/10">
-            <p className="text-[9px] font-display text-primary uppercase tracking-widest">Republic of South Africa 🇿🇦</p>
+            <p className="text-[9px] font-display text-primary uppercase tracking-widest">Kingdom of Lesotho 🇱🇸</p>
             <p className="text-[8px] text-muted-foreground mt-0.5">Zero avoidable deaths by 2030</p>
           </div>
         )}
@@ -126,7 +126,7 @@ export default function DashboardLayout({ children, title, deptBg }: { children:
             </button>
             <span className="flex items-center gap-1">
               <Clock className="w-3 h-3 text-accent" />
-              {time.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+              {time.toLocaleTimeString('en-LS', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
             </span>
             <span className="flex items-center gap-1">
               <Wifi className="w-3 h-3 text-success" /> Network

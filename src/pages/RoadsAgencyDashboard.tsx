@@ -17,23 +17,23 @@ const ROAD_SCORE = 72;
 const POTHOLE_DETECTED_TODAY = 7;
 
 const smartAlerts = [
-  { id: 'SR-001', location: 'R81 Bridge Tzaneen', type: 'Flood Risk', severity: 'critical', sensor: 'Acoustic + LiDAR', action: 'Road closed', time: '3m ago' },
+  { id: 'SR-001', location: 'A2 Mountain Pass Bridge', type: 'Flood Risk', severity: 'critical', sensor: 'Acoustic + LiDAR', action: 'Road closed', time: '3m ago' },
   { id: 'SR-002', location: 'N1 KM 308', type: 'Pothole Cluster', severity: 'high', sensor: 'AI Camera', action: 'Repair crew deployed', time: '17m ago' },
   { id: 'SR-003', location: 'R71 Pass Descent', type: 'Erosion Risk', severity: 'high', sensor: 'Satellite + LiDAR', action: 'Speed limit reduced', time: '42m ago' },
-  { id: 'SR-004', location: 'M10 Seshego KM 4', type: 'Pothole', severity: 'medium', sensor: 'Citizen report + AI', action: 'Scheduled repair', time: '1h ago' },
+  { id: 'SR-004', location: 'A3 Teyateyaneng KM 4', type: 'Pothole', severity: 'medium', sensor: 'Citizen report + AI', action: 'Scheduled repair', time: '1h ago' },
 ];
 
 const infrastructureHealth = [
   { road: 'N1 National', km: 87, score: 78, status: 'fair', issues: 3 },
   { road: 'R71 Scenic Route', km: 54, score: 62, status: 'poor', issues: 7 },
-  { road: 'R81 Tzaneen', km: 42, score: 55, status: 'poor', issues: 9 },
+  { road: 'A2 Mountain Pass', km: 42, score: 55, status: 'poor', issues: 9 },
   { road: 'R36 Escarpment', km: 36, score: 88, status: 'good', issues: 1 },
-  { road: 'M10 Seshego', km: 18, score: 71, status: 'fair', issues: 4 },
-  { road: 'R528 Vhembe', km: 63, score: 44, status: 'critical', issues: 12 },
+  { road: 'A3 Teyateyaneng', km: 18, score: 71, status: 'fair', issues: 4 },
+  { road: 'A5 Highland Route', km: 63, score: 44, status: 'critical', issues: 12 },
 ];
 
 const maintenanceCrew = [
-  { id: 'C-001', name: 'Road Crew Alpha', location: 'M10 Seshego', task: 'Pothole repair', eta: 'On site', status: 'active' },
+  { id: 'C-001', name: 'Road Crew Alpha', location: 'A3 Teyateyaneng', task: 'Pothole repair', eta: 'On site', status: 'active' },
   { id: 'C-002', name: 'Road Crew Bravo', location: 'R81 Bridge', task: 'Flood barrier', eta: '15 min', status: 'en route' },
   { id: 'C-003', name: 'Road Crew Charlie', location: 'N1 KM 312', task: 'Crack sealing', eta: 'On site', status: 'active' },
   { id: 'C-004', name: 'Inspection Unit 1', location: 'R71 Pass', task: 'Erosion survey', eta: '22 min', status: 'en route' },

@@ -19,22 +19,22 @@ interface MapItem {
 
 // Additional map pins for richness
 const constructionZones = [
-  { id: 'CZ-1', name: 'M10 Seshego Resurfacing', lat: -23.82, lng: 29.40, status: 'active', eta: '3 days' },
-  { id: 'CZ-2', name: 'R37 Pothole Repairs', lat: -23.95, lng: 29.65, status: 'active', eta: '5 days' },
-  { id: 'CZ-3', name: 'N1 KM 312 Crack Repair', lat: -24.05, lng: 29.35, status: 'scheduled', eta: '7 days' },
+  { id: 'CZ-1', name: 'A4 Leribe Road Resurfacing', lat: -28.90, lng: 28.05, status: 'active', eta: '3 days' },
+  { id: 'CZ-2', name: 'A1 KM 28 Pothole Repairs', lat: -29.52, lng: 27.62, status: 'active', eta: '5 days' },
+  { id: 'CZ-3', name: 'A2 Mountain Pass Crack Repair', lat: -29.55, lng: 27.88, status: 'scheduled', eta: '7 days' },
 ];
 
 const policePostings = [
-  { id: 'PP-1', name: 'SAPS Unit 247', lat: -23.88, lng: 29.42, status: 'on duty', score: 1240 },
-  { id: 'PP-2', name: 'SAPS Flying Squad 12', lat: -23.92, lng: 29.50, status: 'on duty', score: 1580 },
-  { id: 'PP-3', name: 'Traffic Unit 19', lat: -23.87, lng: 29.70, status: 'standby', score: 890 },
-  { id: 'PP-4', name: 'K9 Unit Seshego', lat: -23.84, lng: 29.38, status: 'on duty', score: 720 },
+  { id: 'PP-1', name: 'LMPS Unit 247', lat: -29.31, lng: 27.48, status: 'on duty', score: 1240 },
+  { id: 'PP-2', name: 'LMPS Flying Squad 12', lat: -29.32, lng: 27.50, status: 'on duty', score: 1580 },
+  { id: 'PP-3', name: 'Traffic Unit 19', lat: -29.15, lng: 27.77, status: 'standby', score: 890 },
+  { id: 'PP-4', name: 'K9 Unit Maseru', lat: -29.35, lng: 27.52, status: 'on duty', score: 720 },
 ];
 
 const aidInProgress = [
-  { id: 'AID-1', name: 'Ambulance Unit 247', lat: -23.90, lng: 29.46, destination: 'N1 Highway Crash', eta: '3m 42s', moving: true },
-  { id: 'AID-2', name: 'Fire Unit 7', lat: -23.93, lng: 29.90, destination: 'R71 Incident', eta: '6m', moving: true },
-  { id: 'AID-3', name: 'Ambulance Unit 112', lat: -23.88, lng: 29.72, destination: 'Mankweng Area', eta: '5m 30s', moving: true },
+  { id: 'AID-1', name: 'Ambulance Unit 247', lat: -29.28, lng: 27.51, destination: 'A1 Highway Crash', eta: '3m 42s', moving: true },
+  { id: 'AID-2', name: 'Fire Unit 7', lat: -29.52, lng: 27.88, destination: 'A2 Mountain Incident', eta: '6m', moving: true },
+  { id: 'AID-3', name: 'Ambulance Unit 112', lat: -29.15, lng: 27.77, destination: 'Teyateyaneng Area', eta: '5m 30s', moving: true },
 ];
 
 export default function ProvinceMap() {
@@ -47,7 +47,7 @@ export default function ProvinceMap() {
   const isDragging = useRef(false);
   const lastPos = useRef({ x: 0, y: 0 });
 
-  const mapBounds = { minLat: -24.8, maxLat: -22.2, minLng: 28.0, maxLng: 31.5 };
+  const mapBounds = { minLat: -30.7, maxLat: -28.5, minLng: 27.0, maxLng: 29.5 };
 
   const toMapPos = (lat: number, lng: number) => ({
     x: ((lng - mapBounds.minLng) / (mapBounds.maxLng - mapBounds.minLng)) * 100,
@@ -87,10 +87,10 @@ export default function ProvinceMap() {
   ];
 
   const workerPositions = [
-    { lat: -23.9, lng: 29.45 }, { lat: -23.88, lng: 29.72 }, { lat: -23.85, lng: 29.41 },
-    { lat: -23.94, lng: 29.94 }, { lat: -23.83, lng: 30.16 }, { lat: -23.91, lng: 29.5 },
-    { lat: -24.0, lng: 29.3 }, { lat: -23.7, lng: 29.8 }, { lat: -23.95, lng: 30.0 },
-    { lat: -23.85, lng: 29.6 },
+    { lat: -29.31, lng: 27.48 }, { lat: -29.15, lng: 27.78 }, { lat: -29.35, lng: 27.52 },
+    { lat: -28.88, lng: 28.05 }, { lat: -29.82, lng: 27.23 }, { lat: -29.32, lng: 27.50 },
+    { lat: -30.15, lng: 27.47 }, { lat: -28.77, lng: 28.25 }, { lat: -29.52, lng: 28.60 },
+    { lat: -29.40, lng: 27.65 },
   ];
 
   return (
@@ -102,7 +102,7 @@ export default function ProvinceMap() {
           <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">
             Provincial Safety Intelligence Map
           </h3>
-          <span className="text-[9px] text-muted-foreground font-display">— LIMPOPO PROVINCE</span>
+          <span className="text-[9px] text-muted-foreground font-display">— KINGDOM OF LESOTHO</span>
         </div>
         <div className="flex items-center gap-1">
           <motion.div
@@ -205,36 +205,34 @@ export default function ProvinceMap() {
                 filter="url(#glow)"
               />
 
-              {/* Major routes with neon glow */}
+              {/* Major routes with neon glow — Lesotho */}
               {activeLayers.includes('routes') && (
                 <>
-                  {/* N1 Highway */}
-                  <line x1="28%" y1="10%" x2="35%" y2="90%" stroke="hsl(43 96% 52% / 0.3)" strokeWidth="2.5" filter="url(#glow)" />
-                  <line x1="28%" y1="10%" x2="35%" y2="90%" stroke="hsl(43 96% 52% / 0.15)" strokeWidth="1" strokeDasharray="6 3" />
-                  {/* R71 */}
-                  <line x1="30%" y1="42%" x2="75%" y2="38%" stroke="hsl(43 96% 52% / 0.25)" strokeWidth="2" filter="url(#glow)" />
-                  <line x1="30%" y1="42%" x2="75%" y2="38%" stroke="hsl(43 96% 52% / 0.12)" strokeWidth="1" strokeDasharray="6 3" />
-                  {/* R81 */}
-                  <line x1="40%" y1="35%" x2="65%" y2="55%" stroke="hsl(43 96% 52% / 0.2)" strokeWidth="1.5" filter="url(#glow)" />
-                  {/* R36 */}
-                  <line x1="25%" y1="50%" x2="55%" y2="75%" stroke="hsl(43 96% 52% / 0.15)" strokeWidth="1.5" />
-                  {/* M10 */}
-                  <line x1="22%" y1="35%" x2="38%" y2="38%" stroke="hsl(43 96% 52% / 0.15)" strokeWidth="1" />
+                  {/* A1 — Main North-South */}
+                  <polyline points="55%,10% 48%,35% 42%,55% 38%,80%" stroke="hsl(43 96% 52% / 0.3)" strokeWidth="2.5" fill="none" filter="url(#glow)" />
+                  <polyline points="55%,10% 48%,35% 42%,55% 38%,80%" stroke="hsl(43 96% 52% / 0.15)" strokeWidth="1" strokeDasharray="6 3" fill="none" />
+                  {/* A2 — Mountain Pass */}
+                  <polyline points="42%,55% 52%,60% 62%,65% 72%,55%" stroke="hsl(43 96% 52% / 0.25)" strokeWidth="2" fill="none" filter="url(#glow)" />
+                  <polyline points="42%,55% 52%,60% 62%,65% 72%,55%" stroke="hsl(43 96% 52% / 0.12)" strokeWidth="1" strokeDasharray="6 3" fill="none" />
+                  {/* A3 — Teyateyaneng */}
+                  <line x1="42%" y1="55%" x2="55%" y2="38%" stroke="hsl(43 96% 52% / 0.2)" strokeWidth="1.5" />
+                  {/* A4 — Leribe */}
+                  <line x1="55%" y1="10%" x2="62%" y2="20%" stroke="hsl(43 96% 52% / 0.15)" strokeWidth="1.5" />
                   {/* Road labels */}
-                  <text x="31%" y="48%" fill="hsl(43 96% 52% / 0.5)" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold">N1</text>
-                  <text x="52%" y="35%" fill="hsl(43 96% 52% / 0.4)" fontSize="8" fontFamily="JetBrains Mono">R71</text>
-                  <text x="52%" y="50%" fill="hsl(43 96% 52% / 0.35)" fontSize="7" fontFamily="JetBrains Mono">R81</text>
-                  <text x="36%" y="65%" fill="hsl(43 96% 52% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">R36</text>
+                  <text x="41%" y="65%" fill="hsl(43 96% 52% / 0.5)" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold">A1</text>
+                  <text x="58%" y="62%" fill="hsl(43 96% 52% / 0.4)" fontSize="8" fontFamily="JetBrains Mono">A2</text>
+                  <text x="50%" y="44%" fill="hsl(43 96% 52% / 0.35)" fontSize="7" fontFamily="JetBrains Mono">A3</text>
+                  <text x="59%" y="14%" fill="hsl(43 96% 52% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">A4</text>
                 </>
               )}
 
               {/* Town labels */}
-              <text x="32%" y="43%" fill="hsl(0 0% 100% / 0.6)" fontSize="10" fontFamily="JetBrains Mono" fontWeight="600">POLOKWANE</text>
-              <text x="55%" y="40%" fill="hsl(0 0% 100% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">Mankweng</text>
-              <text x="62%" y="55%" fill="hsl(0 0% 100% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">Tzaneen</text>
-              <text x="22%" y="72%" fill="hsl(0 0% 100% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">Mokopane</text>
-              <text x="60%" y="18%" fill="hsl(0 0% 100% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">Thohoyandou</text>
-              <text x="18%" y="38%" fill="hsl(0 0% 100% / 0.25)" fontSize="6" fontFamily="JetBrains Mono">Seshego</text>
+              <text x="38%" y="56%" fill="hsl(0 0% 100% / 0.6)" fontSize="10" fontFamily="JetBrains Mono" fontWeight="600">MASERU</text>
+              <text x="52%" y="38%" fill="hsl(0 0% 100% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">Teyateyaneng</text>
+              <text x="58%" y="16%" fill="hsl(0 0% 100% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">Leribe</text>
+              <text x="30%" y="82%" fill="hsl(0 0% 100% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">Mafeteng</text>
+              <text x="35%" y="92%" fill="hsl(0 0% 100% / 0.3)" fontSize="7" fontFamily="JetBrains Mono">Mohale's Hoek</text>
+              <text x="68%" y="8%" fill="hsl(0 0% 100% / 0.25)" fontSize="6" fontFamily="JetBrains Mono">Butha-Buthe</text>
             </svg>
 
             {/* Heatmap zones */}

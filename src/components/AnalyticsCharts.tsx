@@ -263,13 +263,13 @@ export function EMSResponseChart() {
 
 export function HealthCapacityChart() {
   const data = [
-    { name: 'Polokwane Provincial', total: 120, occupied: 78, icu: 8 },
-    { name: 'Mankweng', total: 80, occupied: 68, icu: 4 },
-    { name: 'Mediclinic', total: 60, occupied: 32, icu: 6 },
-    { name: 'Life St Dominics', total: 45, occupied: 30, icu: 3 },
+    { name: 'Queen Mamohato', total: 120, occupied: 78, icu: 8 },
+    { name: 'Leribe Hospital', total: 80, occupied: 68, icu: 4 },
+    { name: 'Mafeteng Hosp.', total: 60, occupied: 32, icu: 6 },
+    { name: "Mohale's Hoek", total: 45, occupied: 30, icu: 3 },
   ];
   return (
-    <ChartWrapper title="Hospital Bed Capacity" analysis="Mankweng at 85% capacity. ICU beds limited.">
+    <ChartWrapper title="Hospital Bed Capacity" analysis="Leribe Hospital at 85% capacity. ICU beds limited.">
       <ResponsiveContainer width="100%" height={200}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(160, 12%, 16%)" />

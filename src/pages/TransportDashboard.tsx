@@ -22,8 +22,8 @@ const aiPredictions = [
   { id: 'AI-T01', road: 'N1 — KM 302–308', prediction: 'Traffic surge in 14 min', action: 'Green wave active', confidence: 91, severity: 'high' },
   { id: 'AI-T02', road: 'R71 Pass', prediction: 'Fog advisory — reduce speed', action: 'LED sign updated', confidence: 88, severity: 'medium' },
   { id: 'AI-T03', road: 'CBD Ring Road', prediction: 'School rush peak — 15:00', action: 'Signal re-timed', confidence: 94, severity: 'medium' },
-  { id: 'AI-T04', road: 'R81 Tzaneen', prediction: 'Flood risk — bridge closure', action: 'Road closed signal sent', confidence: 96, severity: 'critical' },
-  { id: 'AI-T05', road: 'M10 Seshego', prediction: 'Construction overrun +2hrs', action: 'Diversion route updated', confidence: 82, severity: 'low' },
+  { id: 'AI-T04', road: 'A2 Mountain Pass', prediction: 'Flood risk — bridge closure', action: 'Road closed signal sent', confidence: 96, severity: 'critical' },
+  { id: 'AI-T05', road: 'A3 Teyateyaneng', prediction: 'Construction overrun +2hrs', action: 'Diversion route updated', confidence: 82, severity: 'low' },
 ];
 
 const signalOverrides = [

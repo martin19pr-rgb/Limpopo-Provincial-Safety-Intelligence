@@ -17,22 +17,22 @@ const BLOCKCHAIN_OFFICERS = 500;
 const BLOCKCHAIN_COMPLIANCE = 87;
 
 const preCrimeAlerts = [
-  { id: 'PC-001', zone: 'Mall of the North', risk: 94, type: 'Armed Robbery', eta: '12 min', confidence: 91, officers: 3 },
-  { id: 'PC-002', zone: 'N1 KM 305 Corridor', risk: 87, type: 'Carjacking', eta: '8 min', confidence: 85, officers: 2 },
-  { id: 'PC-003', zone: 'Seshego Night Market', risk: 76, type: 'Gang Activity', eta: '22 min', confidence: 79, officers: 4 },
-  { id: 'PC-004', zone: 'Polokwane CBD', risk: 68, type: 'Pickpocketing', eta: '35 min', confidence: 72, officers: 1 },
+  { id: 'PC-001', zone: 'Maseru CBD Market', risk: 94, type: 'Armed Robbery', eta: '12 min', confidence: 91, officers: 3 },
+  { id: 'PC-002', zone: 'A1 KM 12 Corridor', risk: 87, type: 'Carjacking', eta: '8 min', confidence: 85, officers: 2 },
+  { id: 'PC-003', zone: 'Leribe Night Market', risk: 76, type: 'Gang Activity', eta: '22 min', confidence: 79, officers: 4 },
+  { id: 'PC-004', zone: 'Maseru Old Town', risk: 68, type: 'Pickpocketing', eta: '35 min', confidence: 72, officers: 1 },
 ];
 
 const lprMatches = [
-  { plate: 'HHK 421 GP', status: 'STOLEN', location: 'N1 N/B KM 308', threat: 'critical', time: '2m ago' },
-  { plate: 'BRT 882 LP', status: 'WANTED', location: 'R71 Tzaneen', threat: 'high', time: '7m ago' },
-  { plate: 'DFZ 339 NW', status: 'FLAGGED', location: 'CBD Mall Rd', threat: 'medium', time: '14m ago' },
+  { plate: 'LSO 421 A', status: 'STOLEN', location: 'A1 N/B KM 12', threat: 'critical', time: '2m ago' },
+  { plate: 'LSO 882 B', status: 'WANTED', location: 'A2 Teyateyaneng', threat: 'high', time: '7m ago' },
+  { plate: 'LSO 339 C', status: 'FLAGGED', location: 'Maseru City Centre', threat: 'medium', time: '14m ago' },
 ];
 
 const droneFeed = [
-  { id: 'DR-01', status: 'airborne', location: 'N1 Highway Sector 3', battery: 78, altitude: '120m', task: 'Incident surveillance' },
-  { id: 'DR-02', status: 'airborne', location: 'Mall of the North', battery: 91, altitude: '85m', task: 'Pre-crime patrol' },
-  { id: 'DR-03', status: 'standby', location: 'Polokwane HQ Pad', battery: 100, altitude: '0m', task: 'On standby' },
+  { id: 'DR-01', status: 'airborne', location: 'A1 Highway Sector 3', battery: 78, altitude: '120m', task: 'Incident surveillance' },
+  { id: 'DR-02', status: 'airborne', location: 'Maseru CBD Market', battery: 91, altitude: '85m', task: 'Pre-crime patrol' },
+  { id: 'DR-03', status: 'standby', location: 'Maseru LMPS HQ Pad', battery: 100, altitude: '0m', task: 'On standby' },
 ];
 
 const activeOfficers = mockWorkers.filter(w => w.department === 'saps');
@@ -70,7 +70,7 @@ export default function SAPSDashboard() {
   const generateAIReport = () => {
     setGeneratingReport(true);
     setAiReport('');
-    const report = `LPISTH AI CRISIS REPORT — SAPS LIMPOPO\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nGenerated: ${new Date().toLocaleString('en-ZA')}\nClassification: RESTRICTED\n\n[AI ANALYSIS — 87% ACCURACY]\nCurrent threat level: ELEVATED\nActive pre-crime predictions: ${preCrimeAlerts.length}\nHighest risk zone: Mall of the North (94%)\n\n[BLOCKCHAIN STATUS]\n${BLOCKCHAIN_OFFICERS} officers tracked on-chain\nCompliance rate: ${BLOCKCHAIN_COMPLIANCE}%\nLast sync: ${new Date().toLocaleTimeString('en-ZA')}\n\n[LPR INTELLIGENCE]\n${lprMatches.length} vehicles flagged in last hour\n1 stolen vehicle intercepted — N1 KM 308\n\n[DRONE NETWORK]\n2/3 drones airborne\nTotal surveillance coverage: 47km²\n\n[RECOMMENDATION]\nDeploy Flying Squad to Mall of the North sector.\nActivate green-wave traffic for emergency response.\nAlert EMS — standby for possible medical response.`;
+    const report = `LSISTH AI CRISIS REPORT — LMPS LESOTHO\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nGenerated: ${new Date().toLocaleString('en-LS')}\nClassification: RESTRICTED\n\n[AI ANALYSIS — 87% ACCURACY]\nCurrent threat level: ELEVATED\nActive pre-crime predictions: ${preCrimeAlerts.length}\nHighest risk zone: Maseru CBD Market (94%)\n\n[BLOCKCHAIN STATUS]\n${BLOCKCHAIN_OFFICERS} officers tracked on-chain\nCompliance rate: ${BLOCKCHAIN_COMPLIANCE}%\nLast sync: ${new Date().toLocaleTimeString('en-LS')}\n\n[LPR INTELLIGENCE]\n${lprMatches.length} vehicles flagged in last hour\n1 stolen vehicle intercepted — A1 KM 12\n\n[DRONE NETWORK]\n2/3 drones airborne\nTotal surveillance coverage: 47km²\n\n[RECOMMENDATION]\nDeploy Flying Squad to Maseru CBD sector.\nActivate green-wave traffic for emergency response.\nAlert EMS — standby for possible medical response.`;
     let i = 0;
     const interval = setInterval(() => {
       setAiReport(report.slice(0, i));
@@ -88,7 +88,7 @@ export default function SAPSDashboard() {
   ];
 
   return (
-    <DashboardLayout title="SAPS — AI Command Centre" deptBg="dept-bg-saps">
+    <DashboardLayout title="LMPS — AI Command Centre" deptBg="dept-bg-saps">
       <div className="space-y-5">
 
         {/* Hero header */}

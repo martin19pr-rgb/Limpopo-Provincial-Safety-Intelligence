@@ -19,29 +19,29 @@ L.Icon.Default.mergeOptions({
 type MapLayer = 'workers' | 'alerts' | 'heatmap' | 'construction' | 'police' | 'routes';
 
 const constructionZones = [
-  { id: 'CZ-1', name: 'M10 Seshego Resurfacing', lat: -23.82, lng: 29.40, status: 'active', eta: '3 days' },
-  { id: 'CZ-2', name: 'R37 Pothole Repairs', lat: -23.95, lng: 29.65, status: 'active', eta: '5 days' },
-  { id: 'CZ-3', name: 'N1 KM 312 Crack Repair', lat: -24.05, lng: 29.35, status: 'scheduled', eta: '7 days' },
+  { id: 'CZ-1', name: 'A4 Leribe Road Resurfacing', lat: -28.90, lng: 28.05, status: 'active', eta: '3 days' },
+  { id: 'CZ-2', name: 'A1 KM 28 Pothole Repairs', lat: -29.52, lng: 27.62, status: 'active', eta: '5 days' },
+  { id: 'CZ-3', name: 'A2 Mountain Pass Crack Repair', lat: -29.55, lng: 27.88, status: 'scheduled', eta: '7 days' },
 ];
 
 const policePostings = [
-  { id: 'PP-1', name: 'SAPS Unit 247', lat: -23.88, lng: 29.42, status: 'on duty', score: 1240 },
-  { id: 'PP-2', name: 'SAPS Flying Squad 12', lat: -23.70, lng: 29.50, status: 'on duty', score: 1580 },
-  { id: 'PP-3', name: 'Traffic Unit 19', lat: -24.18, lng: 29.01, status: 'standby', score: 890 },
-  { id: 'PP-4', name: 'K9 Unit Seshego', lat: -23.84, lng: 29.38, status: 'on duty', score: 720 },
+  { id: 'PP-1', name: 'LMPS Unit 247', lat: -29.31, lng: 27.48, status: 'on duty', score: 1240 },
+  { id: 'PP-2', name: 'LMPS Flying Squad 12', lat: -29.15, lng: 27.78, status: 'on duty', score: 1580 },
+  { id: 'PP-3', name: 'Traffic Unit 19', lat: -28.88, lng: 28.05, status: 'standby', score: 890 },
+  { id: 'PP-4', name: 'K9 Unit Maseru', lat: -29.35, lng: 27.52, status: 'on duty', score: 720 },
 ];
 
 const aidInProgress = [
-  { id: 'AID-1', name: 'Ambulance Unit 247', lat: -23.90, lng: 29.46, destination: 'N1 Highway Crash', eta: '3m 42s' },
-  { id: 'AID-2', name: 'Fire Unit 7', lat: -23.40, lng: 30.40, destination: 'R71 Incident', eta: '6m' },
-  { id: 'AID-3', name: 'Ambulance Unit 112', lat: -23.55, lng: 30.12, destination: 'Mankweng Area', eta: '5m 30s' },
+  { id: 'AID-1', name: 'Ambulance Unit 247', lat: -29.28, lng: 27.51, destination: 'A1 Highway Crash', eta: '3m 42s' },
+  { id: 'AID-2', name: 'Fire Unit 7', lat: -29.52, lng: 27.88, destination: 'A2 Mountain Incident', eta: '6m' },
+  { id: 'AID-3', name: 'Ambulance Unit 112', lat: -29.15, lng: 27.77, destination: 'Teyateyaneng Area', eta: '5m 30s' },
 ];
 
 const workerPositions = [
-  { lat: -23.9, lng: 29.45 }, { lat: -23.60, lng: 30.20 }, { lat: -23.85, lng: 29.41 },
-  { lat: -24.17, lng: 29.00 }, { lat: -23.50, lng: 30.16 }, { lat: -23.91, lng: 29.5 },
-  { lat: -24.0, lng: 29.3 }, { lat: -23.30, lng: 29.8 }, { lat: -23.95, lng: 30.0 },
-  { lat: -23.85, lng: 29.6 },
+  { lat: -29.31, lng: 27.48 }, { lat: -29.15, lng: 27.78 }, { lat: -29.35, lng: 27.52 },
+  { lat: -28.88, lng: 28.05 }, { lat: -29.82, lng: 27.23 }, { lat: -29.32, lng: 27.50 },
+  { lat: -30.15, lng: 27.47 }, { lat: -28.77, lng: 28.25 }, { lat: -29.52, lng: 28.60 },
+  { lat: -29.40, lng: 27.65 },
 ];
 
 function createIcon(color: string, size: number = 12) {
@@ -86,7 +86,7 @@ export default function SmartProvincialMap({ filterDept }: { filterDept?: string
     const map = L.map(mapContainerRef.current, {
       zoomControl: false,
       attributionControl: false,
-    }).setView([-23.5, 29.8], 8);
+    }).setView([-29.6, 28.0], 9);
 
     // Dark tile layer
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -106,12 +106,12 @@ export default function SmartProvincialMap({ filterDept }: { filterDept?: string
       routes: L.layerGroup(),
     };
 
-    // Routes
+    // Routes — Lesotho
     const routeStyle = { color: '#D4AF37', weight: 3, opacity: 0.5, dashArray: '8 4' };
-    L.polyline([[-24.5, 29.0], [-23.9, 29.45], [-23.4, 29.8], [-22.8, 30.2]], { ...routeStyle, weight: 4, opacity: 0.7 }).bindTooltip('N1 Highway', { className: 'map-tooltip' }).addTo(groups.routes);
-    L.polyline([[-23.9, 29.45], [-23.6, 30.0], [-23.3, 30.5]], routeStyle).bindTooltip('R71', { className: 'map-tooltip' }).addTo(groups.routes);
-    L.polyline([[-23.9, 29.45], [-23.7, 29.8], [-23.5, 30.3]], routeStyle).bindTooltip('R81', { className: 'map-tooltip' }).addTo(groups.routes);
-    L.polyline([[-24.1, 29.2], [-23.6, 30.2]], { ...routeStyle, opacity: 0.3 }).bindTooltip('R36', { className: 'map-tooltip' }).addTo(groups.routes);
+    L.polyline([[-28.77, 28.25], [-28.88, 28.05], [-29.15, 27.77], [-29.31, 27.48], [-29.82, 27.23], [-30.15, 27.47]], { ...routeStyle, weight: 4, opacity: 0.7 }).bindTooltip('A1 — Main North-South', { className: 'map-tooltip' }).addTo(groups.routes);
+    L.polyline([[-29.31, 27.48], [-29.40, 27.70], [-29.52, 27.88], [-29.60, 28.25], [-29.52, 28.60]], routeStyle).bindTooltip('A2 — Mountain Pass', { className: 'map-tooltip' }).addTo(groups.routes);
+    L.polyline([[-29.31, 27.48], [-29.15, 27.77], [-29.05, 28.05]], routeStyle).bindTooltip('A3 — Teyateyaneng Road', { className: 'map-tooltip' }).addTo(groups.routes);
+    L.polyline([[-28.88, 28.05], [-28.77, 28.25]], { ...routeStyle, opacity: 0.3 }).bindTooltip('A4 — Leribe Road', { className: 'map-tooltip' }).addTo(groups.routes);
 
     // Heatmap zones as circles
     heatmapZones.forEach(zone => {
@@ -224,7 +224,7 @@ export default function SmartProvincialMap({ filterDept }: { filterDept?: string
           <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">
             Provincial Intelligence Map
           </h3>
-          <span className="text-[9px] text-muted-foreground font-display">— LIMPOPO PROVINCE</span>
+          <span className="text-[9px] text-muted-foreground font-display">— KINGDOM OF LESOTHO</span>
         </div>
         <div className="flex items-center gap-1">
           <motion.div
@@ -280,10 +280,10 @@ export default function SmartProvincialMap({ filterDept }: { filterDept?: string
           <button onClick={() => mapRef.current?.zoomOut()} className="p-1.5 bg-card/90 border border-border rounded-md hover:bg-secondary transition-colors">
             <ZoomOut className="w-3.5 h-3.5 text-foreground" />
           </button>
-          <button onClick={() => mapRef.current?.setView([-23.5, 29.8], 8)} className="p-1.5 bg-card/90 border border-border rounded-md hover:bg-secondary transition-colors">
+          <button onClick={() => mapRef.current?.setView([-29.6, 28.0], 9)} className="p-1.5 bg-card/90 border border-border rounded-md hover:bg-secondary transition-colors">
             <Maximize2 className="w-3.5 h-3.5 text-foreground" />
           </button>
-          <button onClick={() => mapRef.current?.setView([-23.9045, 29.4688], 13)} className="p-1.5 bg-card/90 border border-border rounded-md hover:bg-secondary transition-colors">
+          <button onClick={() => mapRef.current?.setView([-29.3167, 27.4833], 13)} className="p-1.5 bg-card/90 border border-border rounded-md hover:bg-secondary transition-colors">
             <Crosshair className="w-3.5 h-3.5 text-foreground" />
           </button>
         </div>

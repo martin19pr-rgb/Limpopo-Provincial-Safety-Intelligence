@@ -17,7 +17,7 @@ const analysisData: AnalysisReading[] = [
   { label: 'PoW Compliance Index', value: '87%', status: 'warning', detail: '5 workers flagged below threshold (<200 pts). Auto-dispatch skips low-scorers. 45% scored Excellent (1000+).', trend: 'up', source: 'PoW Engine' },
   { label: 'False Alert Suppression', value: '98.9%', status: 'good', detail: 'AI tuning reduced false positives by 15%. Acoustic + LiDAR dual-confirm now standard. Only 1.1% false rate.', trend: 'down', source: 'Sensor Fusion AI' },
   { label: 'Fatality Reduction', value: '-34% YoY', status: 'good', detail: 'Zero Deaths 2030 on track at 25%. Rural satellite deployment cut response gaps. 1,234 lives saved in 2024.', trend: 'down', source: 'Provincial Stats' },
-  { label: 'Road Hazard Index', value: '62/100', status: 'warning', detail: '23 active road hazards. R81 bridge flood risk critical. 50 citizen reports pending for Vhembe rural paths.', trend: 'up', source: 'RAL Sensors' },
+  { label: 'Road Hazard Index', value: '62/100', status: 'warning', detail: '23 active road hazards. A2 mountain bridge flood risk critical. 50 citizen reports pending for rural highland paths.', trend: 'up', source: 'RAL Sensors' },
 ];
 
 const statusConfig = {

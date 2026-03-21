@@ -14,8 +14,8 @@ export default function InteractiveMap() {
     );
   };
 
-  // Map bounds for Limpopo province (simplified projection)
-  const mapBounds = { minLat: -24.5, maxLat: -22.5, minLng: 28.5, maxLng: 31.0 };
+  // Map bounds for Lesotho (simplified projection)
+  const mapBounds = { minLat: -30.7, maxLat: -28.5, minLng: 27.0, maxLng: 29.5 };
 
   const toMapPos = (lat: number, lng: number) => ({
     x: ((lng - mapBounds.minLng) / (mapBounds.maxLng - mapBounds.minLng)) * 100,
@@ -30,7 +30,7 @@ export default function InteractiveMap() {
     <div className="dashboard-card">
       <div className="flex items-center justify-between mb-3">
         <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest">
-          Live Tracking Map — Limpopo Province
+          Live Tracking Map — Kingdom of Lesotho
         </h3>
         <div className="flex gap-1">
           {([
@@ -72,10 +72,10 @@ export default function InteractiveMap() {
             strokeWidth="1"
           />
           {/* Major routes */}
-          <line x1="30%" y1="15%" x2="35%" y2="85%" stroke="hsl(43, 96%, 52%, 0.15)" strokeWidth="2" strokeDasharray="4 4" />
-          <line x1="20%" y1="45%" x2="85%" y2="50%" stroke="hsl(43, 96%, 52%, 0.15)" strokeWidth="2" strokeDasharray="4 4" />
-          <text x="32%" y="50%" fill="hsl(43, 96%, 52%, 0.3)" fontSize="8" fontFamily="JetBrains Mono">N1</text>
-          <text x="55%" y="47%" fill="hsl(43, 96%, 52%, 0.3)" fontSize="8" fontFamily="JetBrains Mono">R71</text>
+          <polyline points="55%,15% 48%,40% 42%,60% 38%,85%" stroke="hsl(43, 96%, 52%, 0.15)" strokeWidth="2" strokeDasharray="4 4" fill="none" />
+          <polyline points="42%,60% 55%,65% 68%,58%" stroke="hsl(43, 96%, 52%, 0.15)" strokeWidth="2" strokeDasharray="4 4" fill="none" />
+          <text x="38%" y="62%" fill="hsl(43, 96%, 52%, 0.3)" fontSize="8" fontFamily="JetBrains Mono">A1</text>
+          <text x="56%" y="63%" fill="hsl(43, 96%, 52%, 0.3)" fontSize="8" fontFamily="JetBrains Mono">A2</text>
         </svg>
 
         {/* Heatmap zones */}
@@ -129,10 +129,10 @@ export default function InteractiveMap() {
         {activeLayers.includes('workers') && mockWorkers.filter(w => w.status !== 'offline').map((worker, i) => {
           // Distribute workers across the map
           const workerPositions = [
-            { lat: -23.9, lng: 29.45 }, { lat: -23.88, lng: 29.72 }, { lat: -23.85, lng: 29.41 },
-            { lat: -23.94, lng: 29.94 }, { lat: -23.83, lng: 30.16 }, { lat: -23.91, lng: 29.5 },
-            { lat: -24.0, lng: 29.3 }, { lat: -23.7, lng: 29.8 }, { lat: -23.95, lng: 30.0 },
-            { lat: -23.85, lng: 29.6 },
+            { lat: -29.31, lng: 27.48 }, { lat: -29.15, lng: 27.78 }, { lat: -29.35, lng: 27.52 },
+            { lat: -28.88, lng: 28.05 }, { lat: -29.82, lng: 27.23 }, { lat: -29.32, lng: 27.50 },
+            { lat: -30.15, lng: 27.47 }, { lat: -28.77, lng: 28.25 }, { lat: -29.52, lng: 28.60 },
+            { lat: -29.40, lng: 27.65 },
           ];
           const coords = workerPositions[i % workerPositions.length];
           const pos = toMapPos(coords.lat, coords.lng);
@@ -164,7 +164,7 @@ export default function InteractiveMap() {
         })}
 
         {/* Map labels */}
-        <div className="absolute top-2 left-2 text-[9px] font-display text-muted-foreground">LIMPOPO PROVINCE</div>
+        <div className="absolute top-2 left-2 text-[9px] font-display text-muted-foreground">KINGDOM OF LESOTHO</div>
         <div className="absolute bottom-2 right-2 flex items-center gap-3 text-[8px] font-display text-muted-foreground">
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-success inline-block" /> Online</span>
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-accent inline-block" /> Standby</span>

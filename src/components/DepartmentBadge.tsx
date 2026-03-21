@@ -11,50 +11,57 @@ const deptConfig: Record<string, {
 }> = {
   command: {
     icon: Shield,
-    name: 'LPISTH',
-    subtitle: 'Provincial Command Center',
+    name: 'LSISTH',
+    subtitle: 'National Command Center',
     accentClass: 'text-primary',
     bgClass: 'bg-primary/10 border-primary/20',
   },
   premier: {
     icon: Building2,
-    name: "OFFICE OF THE PREMIER",
-    subtitle: 'Limpopo Provincial Government',
+    name: "OFFICE OF THE PRIME MINISTER",
+    subtitle: 'Lesotho National Government',
     accentClass: 'text-accent',
     bgClass: 'bg-accent/10 border-accent/20',
   },
   saps: {
     icon: Radio,
-    name: 'SOUTH AFRICAN POLICE SERVICE',
-    subtitle: 'SAPS Limpopo • To Protect and Serve',
+    name: 'LESOTHO MOUNTED POLICE SERVICE',
+    subtitle: 'LMPS • To Protect and Serve',
+    accentClass: 'text-info',
+    bgClass: 'bg-info/10 border-info/20',
+  },
+  lmps: {
+    icon: Radio,
+    name: 'LESOTHO MOUNTED POLICE SERVICE',
+    subtitle: 'LMPS • To Protect and Serve',
     accentClass: 'text-info',
     bgClass: 'bg-info/10 border-info/20',
   },
   ems: {
     icon: Activity,
     name: 'EMERGENCY MEDICAL SERVICES',
-    subtitle: 'Limpopo EMS • Saving Lives',
+    subtitle: 'Lesotho EMS • Saving Lives',
     accentClass: 'text-emergency',
     bgClass: 'bg-emergency/10 border-emergency/20',
   },
   transport: {
     icon: Truck,
-    name: 'DEPARTMENT OF TRANSPORT',
-    subtitle: 'Limpopo • Safe Roads for All',
+    name: 'MINISTRY OF TRANSPORT',
+    subtitle: 'Lesotho • Safe Roads for All',
     accentClass: 'text-accent',
     bgClass: 'bg-accent/10 border-accent/20',
   },
   health: {
     icon: Heart,
-    name: 'DEPARTMENT OF HEALTH',
-    subtitle: 'Limpopo • A Long & Healthy Life for All',
+    name: 'MINISTRY OF HEALTH',
+    subtitle: 'Lesotho • A Long & Healthy Life for All',
     accentClass: 'text-success',
     bgClass: 'bg-success/10 border-success/20',
   },
   roads: {
     icon: Construction,
-    name: 'ROADS AGENCY LIMPOPO',
-    subtitle: 'RAL • Building Better Roads',
+    name: 'ROADS DIRECTORATE LESOTHO',
+    subtitle: 'RDL • Building Better Roads',
     accentClass: 'text-warning',
     bgClass: 'bg-warning/10 border-warning/20',
   },
@@ -82,7 +89,7 @@ export default function DepartmentBadge({ department }: { department: string }) 
       <div className="relative z-10">
         <p className={`font-display text-[10px] font-bold ${config.accentClass} tracking-widest`}>{config.name}</p>
         <p className="text-[9px] text-muted-foreground">{config.subtitle}</p>
-        <p className="text-[8px] text-muted-foreground mt-0.5">Republic of South Africa 🇿🇦</p>
+        <p className="text-[8px] text-muted-foreground mt-0.5">Kingdom of Lesotho 🇱🇸</p>
       </div>
     </motion.div>
   );

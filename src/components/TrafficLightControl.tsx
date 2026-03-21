@@ -15,12 +15,12 @@ interface Junction {
 }
 
 const defaultJunctions: Junction[] = [
-  { name: 'N1/R81 Interchange', road: 'N1 Highway', direction: 'Northbound & Southbound', mode: 'auto', activeLight: 'green', cycleTime: 45, vehiclesPerMin: 82, coordinates: '23.8°S, 29.4°E' },
-  { name: 'Polokwane CBD Circle', road: 'Thabo Mbeki St', direction: 'All directions', mode: 'auto', activeLight: 'red', cycleTime: 60, vehiclesPerMin: 120, coordinates: '23.9°S, 29.4°E' },
-  { name: 'Seshego Main Junction', road: 'M10 Seshego Rd', direction: 'East-West', mode: 'auto', activeLight: 'amber', cycleTime: 40, vehiclesPerMin: 55, coordinates: '23.8°S, 29.4°E' },
-  { name: 'R71/M10 Crossing', road: 'R71 Regional', direction: 'Eastbound to Mankweng', mode: 'auto', activeLight: 'green', cycleTime: 50, vehiclesPerMin: 68, coordinates: '23.8°S, 29.7°E' },
-  { name: 'Mokopane N1 Entry', road: 'N1 Highway', direction: 'Southbound entry ramp', mode: 'auto', activeLight: 'green', cycleTime: 35, vehiclesPerMin: 45, coordinates: '24.1°S, 29.0°E' },
-  { name: 'Tzaneen R36/R71 Fork', road: 'R36 Regional', direction: 'Northwest Split', mode: 'auto', activeLight: 'red', cycleTime: 55, vehiclesPerMin: 73, coordinates: '23.8°S, 30.1°E' },
+  { name: 'A1/A3 Interchange', road: 'A1 Highway', direction: 'Northbound & Southbound', mode: 'auto', activeLight: 'green', cycleTime: 45, vehiclesPerMin: 82, coordinates: '29.3°S, 27.5°E' },
+  { name: 'Maseru CBD Circle', road: "Kingsway St", direction: 'All directions', mode: 'auto', activeLight: 'red', cycleTime: 60, vehiclesPerMin: 120, coordinates: '29.3°S, 27.5°E' },
+  { name: 'Maseru South Junction', road: 'A1 South Rd', direction: 'East-West', mode: 'auto', activeLight: 'amber', cycleTime: 40, vehiclesPerMin: 55, coordinates: '29.4°S, 27.5°E' },
+  { name: 'A2/A3 Crossing', road: 'A3 Regional', direction: 'Eastbound to Teyateyaneng', mode: 'auto', activeLight: 'green', cycleTime: 50, vehiclesPerMin: 68, coordinates: '29.2°S, 27.7°E' },
+  { name: 'Mafeteng A1 Entry', road: 'A1 Highway', direction: 'Southbound entry ramp', mode: 'auto', activeLight: 'green', cycleTime: 35, vehiclesPerMin: 45, coordinates: '29.8°S, 27.2°E' },
+  { name: 'Leribe A4/A5 Fork', road: 'A4 Regional', direction: 'Northwest Split', mode: 'auto', activeLight: 'red', cycleTime: 55, vehiclesPerMin: 73, coordinates: '28.9°S, 28.1°E' },
 ];
 
 export default function TrafficLightControl() {

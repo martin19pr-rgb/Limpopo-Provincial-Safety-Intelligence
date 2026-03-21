@@ -16,32 +16,32 @@ const BEDS_AVAILABLE = 97;
 const OUTBREAK_RISK = 'LOW';
 
 const outbreakMonitor = [
-  { disease: 'Cholera', region: 'Tzaneen Area', cases: 2, trend: 'stable', risk: 'low' },
-  { disease: 'Malaria', region: 'Vhembe District', cases: 14, trend: 'up', risk: 'medium' },
-  { disease: 'COVID variants', region: 'Provincial', cases: 87, trend: 'down', risk: 'low' },
-  { disease: 'Meningitis', region: 'Polokwane', cases: 0, trend: 'stable', risk: 'low' },
+  { disease: 'Cholera', region: 'Mafeteng Area', cases: 2, trend: 'stable', risk: 'low' },
+  { disease: 'Malaria', region: "Mohale's Hoek District", cases: 14, trend: 'up', risk: 'medium' },
+  { disease: 'COVID variants', region: 'National', cases: 87, trend: 'down', risk: 'low' },
+  { disease: 'Meningitis', region: 'Maseru', cases: 0, trend: 'stable', risk: 'low' },
 ];
 
 const medAI = [
-  { id: 'M-AI-01', alert: 'Cardiac event cluster — Polokwane North (3 in 2hrs)', severity: 'high', action: 'EMS + SAPS pre-deployed', time: '4m ago' },
-  { id: 'M-AI-02', alert: 'Trauma surge predicted — R71 weekend traffic', severity: 'medium', action: 'Extra trauma teams on standby', time: '12m ago' },
-  { id: 'M-AI-03', alert: 'ICU capacity below 15% — Mankweng', severity: 'critical', action: 'Patient rerouting activated', time: '27m ago' },
-  { id: 'M-AI-04', alert: 'Malaria uptick — Vhembe seasonal pattern', severity: 'medium', action: 'Community health alerts sent', time: '1h ago' },
+  { id: 'M-AI-01', alert: 'Cardiac event cluster — Maseru North (3 in 2hrs)', severity: 'high', action: 'EMS + LMPS pre-deployed', time: '4m ago' },
+  { id: 'M-AI-02', alert: 'Trauma surge predicted — A2 weekend mountain traffic', severity: 'medium', action: 'Extra trauma teams on standby', time: '12m ago' },
+  { id: 'M-AI-03', alert: 'ICU capacity below 15% — Leribe Hospital', severity: 'critical', action: 'Patient rerouting activated', time: '27m ago' },
+  { id: 'M-AI-04', alert: "Malaria uptick — Mohale's Hoek seasonal pattern", severity: 'medium', action: 'Community health alerts sent', time: '1h ago' },
 ];
 
 const healthWorkers = mockWorkers.filter(w => w.department === 'health');
 
 const hospitals = [
-  { name: 'Polokwane Provincial Hospital', beds: 42, total: 180, icu: 8, emergency: 12, status: 'available' },
-  { name: 'Mankweng Hospital', beds: 12, total: 140, icu: 3, emergency: 6, status: 'limited' },
-  { name: 'Mediclinic Limpopo (Private)', beds: 28, total: 80, icu: 12, emergency: 8, status: 'available' },
-  { name: 'Life St Dominics (Private)', beds: 15, total: 60, icu: 5, emergency: 4, status: 'available' },
+  { name: 'Queen Mamohato Memorial Hospital', beds: 42, total: 180, icu: 8, emergency: 12, status: 'available' },
+  { name: 'Leribe Hospital', beds: 12, total: 140, icu: 3, emergency: 6, status: 'limited' },
+  { name: 'Mafeteng Government Hospital', beds: 28, total: 80, icu: 12, emergency: 8, status: 'available' },
+  { name: "Mohale's Hoek Hospital", beds: 15, total: 60, icu: 5, emergency: 4, status: 'available' },
 ];
 
 const autoClaims = [
-  { id: 'H-2847', patient: 'N. Sithole', amount: 'R 4,200', med: 'Discovery', status: 'approved', diagnosis: 'Hypertension', time: '5m ago' },
-  { id: 'H-2846', patient: 'D. Makubu', amount: 'R 12,400', med: 'Momentum', status: 'approved', diagnosis: 'Cardiac Catheterization', time: '22m ago' },
-  { id: 'H-2845', patient: 'L. Mokoena', amount: 'R 890', med: 'Bonitas', status: 'review', diagnosis: 'Malaria Screening', time: '41m ago' },
+  { id: 'H-2847', patient: 'N. Molapo', amount: 'M 4,200', med: 'LNHIS', status: 'approved', diagnosis: 'Hypertension', time: '5m ago' },
+  { id: 'H-2846', patient: 'D. Nthabiseng', amount: 'M 12,400', med: 'LNHIS', status: 'approved', diagnosis: 'Cardiac Catheterization', time: '22m ago' },
+  { id: 'H-2845', patient: 'L. Motsoari', amount: 'M 890', med: 'LNHIS', status: 'review', diagnosis: 'Malaria Screening', time: '41m ago' },
 ];
 
 export default function HealthDashboard() {

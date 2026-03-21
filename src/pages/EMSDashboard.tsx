@@ -16,18 +16,18 @@ const AVG_RESPONSE = '3m 42s';
 const UNITS_ACTIVE = 18;
 
 const autoClaims = [
-  { id: 'CLM-2847', patient: 'T. Mabunda', incident: 'N1 Highway Crash', amount: 'R 12,400', status: 'auto-approved', medaid: 'Discovery', time: '2m ago' },
-  { id: 'CLM-2846', patient: 'S. Nkosi', incident: 'Cardiac Arrest — Mankweng', amount: 'R 8,900', status: 'auto-approved', medaid: 'Momentum', time: '18m ago' },
-  { id: 'CLM-2845', patient: 'J. van Rooyen', incident: 'R71 Multi-Vehicle', amount: 'R 34,200', status: 'review', medaid: 'Bonitas', time: '31m ago' },
-  { id: 'CLM-2844', patient: 'P. Langa', incident: 'Pedestrian — CBD', amount: 'R 6,100', status: 'auto-approved', medaid: 'Netcare', time: '45m ago' },
-  { id: 'CLM-2843', patient: 'R. Moloto', incident: 'Workplace Injury', amount: 'R 9,700', status: 'auto-approved', medaid: 'FedHealth', time: '1h ago' },
+  { id: 'CLM-2847', patient: 'T. Motsoari', incident: 'A1 Highway Crash', amount: 'M 12,400', status: 'auto-approved', medaid: 'LNHIS', time: '2m ago' },
+  { id: 'CLM-2846', patient: 'S. Mokhesi', incident: 'Cardiac Arrest — Teyateyaneng', amount: 'M 8,900', status: 'auto-approved', medaid: 'LNHIS', time: '18m ago' },
+  { id: 'CLM-2845', patient: 'J. Lekhoa', incident: 'A2 Multi-Vehicle', amount: 'M 34,200', status: 'review', medaid: 'LNHIS', time: '31m ago' },
+  { id: 'CLM-2844', patient: 'P. Nthabiseng', incident: 'Pedestrian — CBD', amount: 'M 6,100', status: 'auto-approved', medaid: 'LNHIS', time: '45m ago' },
+  { id: 'CLM-2843', patient: 'R. Molefe', incident: 'Workplace Injury', amount: 'M 9,700', status: 'auto-approved', medaid: 'LNHIS', time: '1h ago' },
 ];
 
 const hospitalCapacity = [
-  { name: 'Polokwane Provincial', total: 180, available: 42, icu: 8, emergency: 12 },
-  { name: 'Mankweng Hospital', total: 140, available: 12, icu: 3, emergency: 6 },
-  { name: 'Mediclinic Limpopo', total: 80, available: 28, icu: 12, emergency: 8 },
-  { name: 'Life St Dominics', total: 60, available: 15, icu: 5, emergency: 4 },
+  { name: 'Queen Mamohato Memorial Hospital', total: 180, available: 42, icu: 8, emergency: 12 },
+  { name: 'Leribe Hospital', total: 140, available: 12, icu: 3, emergency: 6 },
+  { name: 'Mafeteng Government Hospital', total: 80, available: 28, icu: 12, emergency: 8 },
+  { name: "Mohale's Hoek Hospital", total: 60, available: 15, icu: 5, emergency: 4 },
 ];
 
 const emsUnits = mockWorkers.filter(w => w.department === 'ems');
