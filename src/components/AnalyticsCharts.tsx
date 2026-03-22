@@ -287,14 +287,14 @@ export function HealthCapacityChart() {
 
 export function RoadsConditionChart() {
   const data = [
-    { route: 'N1', potholes: 12, cracks: 8, floods: 2 },
-    { route: 'R71', potholes: 5, cracks: 15, floods: 3 },
-    { route: 'R81', potholes: 8, cracks: 6, floods: 5 },
-    { route: 'M10', potholes: 18, cracks: 3, floods: 0 },
-    { route: 'R36', potholes: 3, cracks: 10, floods: 1 },
+    { route: 'A1', potholes: 12, cracks: 8, floods: 2 },
+    { route: 'A2', potholes: 5, cracks: 15, floods: 3 },
+    { route: 'A3', potholes: 8, cracks: 6, floods: 5 },
+    { route: 'A4', potholes: 18, cracks: 3, floods: 0 },
+    { route: 'A5', potholes: 3, cracks: 10, floods: 1 },
   ];
   return (
-    <ChartWrapper title="Road Conditions by Route" analysis="M10 pothole concentration highest. R71 cracking severe.">
+    <ChartWrapper title="Road Conditions by Route" analysis="A4 pothole concentration highest. A2 cracking severe.">
       <ResponsiveContainer width="100%" height={200}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(160, 12%, 16%)" />

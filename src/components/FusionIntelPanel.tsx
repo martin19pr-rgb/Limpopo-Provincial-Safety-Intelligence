@@ -12,7 +12,7 @@ const fusionFeeds = [
 
 const fusionAlerts = [
   { text: 'Fusion Alert: 94% confidence white BMW heist vehicle R101 J14', severity: 'critical' },
-  { text: 'LPR + CCTV correlation: Suspect vehicle match confirmed N1 KM 45', severity: 'high' },
+  { text: 'LPR + CCTV correlation: Suspect vehicle match confirmed A1 KM 18', severity: 'high' },
   { text: 'Citizen + bodycam fusion: Crash severity upgraded to 8/10', severity: 'medium' },
 ];
 

@@ -10,8 +10,8 @@ const crisisProtocols = [
     icon: Siren,
     color: 'text-destructive',
     bg: 'bg-destructive/10 border-destructive/30',
-    desc: 'N1 Pileup — Deploy 6 police + 8 ambulances + 3 drones + traffic lockdown',
-    resources: ['6 SAPS Units', '8 Ambulances', '3 Drones', 'Full Traffic Lockdown'],
+    desc: 'A1 Pileup — Deploy 6 police + 8 ambulances + 3 drones + traffic lockdown',
+    resources: ['6 LMPS Units', '8 Ambulances', '3 Drones', 'Full Traffic Lockdown'],
   },
   {
     id: 'heist-response',
@@ -43,10 +43,10 @@ const crisisProtocols = [
 ];
 
 const liveComms = [
-  { time: '14:32', from: 'SAPS Unit 247', msg: 'Suspect vehicle sighted R101 North — pursuing', type: 'urgent' },
-  { time: '14:30', from: 'EMS Dispatch', msg: 'Ambulance en route N1 KM 305 — ETA 3m42s', type: 'info' },
-  { time: '14:28', from: 'Traffic Command', msg: 'LED billboards updated: CRASH AHEAD EXIT R81', type: 'system' },
-  { time: '14:25', from: 'AI Engine', msg: 'Prediction: 78% incident spike N1 17:00-19:00', type: 'ai' },
+  { time: '14:32', from: 'LMPS Unit 247', msg: 'Suspect vehicle sighted A1 North — pursuing', type: 'urgent' },
+  { time: '14:30', from: 'EMS Dispatch', msg: 'Ambulance en route A1 KM 12 — ETA 3m42s', type: 'info' },
+  { time: '14:28', from: 'Traffic Command', msg: 'LED billboards updated: CRASH AHEAD EXIT A2', type: 'system' },
+  { time: '14:25', from: 'AI Engine', msg: 'Prediction: 78% incident spike A1 17:00-19:00', type: 'ai' },
   { time: '14:22', from: 'Drone Unit 3', msg: 'Thermal scan complete — 2 victims located', type: 'urgent' },
 ];
 

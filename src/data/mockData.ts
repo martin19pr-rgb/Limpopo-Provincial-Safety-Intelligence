@@ -17,7 +17,7 @@ export interface Alert {
 export interface Worker {
   id: string;
   name: string;
-  department: 'lmps' | 'ems' | 'transport' | 'health' | 'roads';
+  department: 'lmps' | 'ems' | 'transport' | 'health' | 'roads' | 'electricity' | 'fire';
   role: string;
   status: 'online' | 'standby' | 'offline' | 'responding';
   points: number;
@@ -57,6 +57,10 @@ export const mockWorkers: Worker[] = [
   { id: 'W-008', name: 'Dr. Thabo', department: 'health', role: 'Emergency Physician', status: 'standby', points: 950, location: 'Queen Mamohato Memorial Hospital', standbyCompliance: 89, lastHeartbeat: new Date(Date.now() - 8000) },
   { id: 'W-009', name: 'Inspector Lebona', department: 'roads', role: 'Road Inspector', status: 'online', points: 560, location: 'Mafeteng Road Inspection', standbyCompliance: 75, lastHeartbeat: new Date(Date.now() - 25000) },
   { id: 'W-010', name: 'Ambulance Unit 112', department: 'ems', role: 'Basic Life Support', status: 'responding', points: 1020, location: 'Teyateyaneng approach', distance: '3.5km', eta: '5 min 30s', standbyCompliance: 88, lastHeartbeat: new Date() },
+  { id: 'W-011', name: 'Technician Molapo', department: 'electricity', role: 'Grid Technician', status: 'online', points: 820, location: 'Maseru North Substation', standbyCompliance: 86, lastHeartbeat: new Date(Date.now() - 12000) },
+  { id: 'W-012', name: 'Engineer Nkhasi', department: 'electricity', role: 'Senior Engineer', status: 'standby', points: 1140, location: 'LEC Control Room, Maseru', standbyCompliance: 92, lastHeartbeat: new Date(Date.now() - 6000) },
+  { id: 'W-013', name: 'Fire Unit Maseru-1', department: 'fire', role: 'Fire Fighter', status: 'standby', points: 1080, location: 'Maseru Central Fire Station', standbyCompliance: 97, lastHeartbeat: new Date(Date.now() - 3000) },
+  { id: 'W-014', name: 'Chief Mokoti', department: 'fire', role: 'Station Commander', status: 'online', points: 1420, location: 'Maseru Fire HQ', standbyCompliance: 99, lastHeartbeat: new Date() },
 ];
 
 export const commandKPIs: KPI[] = [

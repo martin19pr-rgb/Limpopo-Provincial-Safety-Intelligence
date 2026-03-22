@@ -19,26 +19,26 @@ const LIDAR_SENSORS = 8;
 const SIGNAL_OVERRIDE_COUNT = 3;
 
 const aiPredictions = [
-  { id: 'AI-T01', road: 'N1 — KM 302–308', prediction: 'Traffic surge in 14 min', action: 'Green wave active', confidence: 91, severity: 'high' },
-  { id: 'AI-T02', road: 'R71 Pass', prediction: 'Fog advisory — reduce speed', action: 'LED sign updated', confidence: 88, severity: 'medium' },
-  { id: 'AI-T03', road: 'CBD Ring Road', prediction: 'School rush peak — 15:00', action: 'Signal re-timed', confidence: 94, severity: 'medium' },
-  { id: 'AI-T04', road: 'A2 Mountain Pass', prediction: 'Flood risk — bridge closure', action: 'Road closed signal sent', confidence: 96, severity: 'critical' },
+  { id: 'AI-T01', road: 'A1 — KM 8–18 Maseru', prediction: 'Traffic surge in 14 min', action: 'Green wave active', confidence: 91, severity: 'high' },
+  { id: 'AI-T02', road: 'A2 Mountain Pass', prediction: 'Fog advisory — reduce speed', action: 'LED sign updated', confidence: 88, severity: 'medium' },
+  { id: 'AI-T03', road: 'Kingsway CBD Ring Road', prediction: 'School rush peak — 15:00', action: 'Signal re-timed', confidence: 94, severity: 'medium' },
+  { id: 'AI-T04', road: 'A2 Highland Bridge', prediction: 'Flood risk — bridge closure', action: 'Road closed signal sent', confidence: 96, severity: 'critical' },
   { id: 'AI-T05', road: 'A3 Teyateyaneng', prediction: 'Construction overrun +2hrs', action: 'Diversion route updated', confidence: 82, severity: 'low' },
 ];
 
 const signalOverrides = [
-  { intersection: 'N1 / CBD Off-Ramp', reason: 'Emergency EMS corridor', duration: '8 min', status: 'active', color: 'green' },
-  { intersection: 'R71 Haenertsburg Pass', reason: 'Accident clearance', duration: '22 min', status: 'active', color: 'red' },
-  { intersection: 'Market St / Voortrekker', reason: 'VIP motorcade', duration: '4 min', status: 'pending', color: 'amber' },
+  { intersection: 'A1 / Kingsway Off-Ramp', reason: 'Emergency EMS corridor', duration: '8 min', status: 'active', color: 'green' },
+  { intersection: 'A2 Semonkong Pass', reason: 'Accident clearance', duration: '22 min', status: 'active', color: 'red' },
+  { intersection: 'Kingsway / Pioneer Rd', reason: 'VIP motorcade', duration: '4 min', status: 'pending', color: 'amber' },
 ];
 
 const sensorReadings = [
-  { id: 'L-N1-305', name: 'LiDAR N1 KM 305', type: 'Crash Detection', speed: '112 km/h avg', volume: '847 v/h', status: 'online', alert: true },
-  { id: 'L-R71-42', name: 'LiDAR R71 KM 42', type: 'Speed Monitor', speed: '68 km/h avg', volume: '322 v/h', status: 'online', alert: false },
-  { id: 'A-R81-18', name: 'Acoustic R81 Bridge', type: 'Flood Level', speed: 'N/A', volume: 'Flood: 2.1m', status: 'alert', alert: true },
-  { id: 'L-R81-KM4', name: 'LiDAR R81 KM 4', type: 'Impact Detection', speed: '91 km/h avg', volume: '512 v/h', status: 'online', alert: false },
-  { id: 'L-M10-4', name: 'LiDAR M10 KM 4', type: 'Construction Zone', speed: '32 km/h avg', volume: '208 v/h', status: 'online', alert: false },
-  { id: 'A-N1-312', name: 'Acoustic N1 KM 312', type: 'Speed Monitor', speed: '138 km/h peak', volume: '1,241 v/h', status: 'online', alert: true },
+  { id: 'L-A1-12', name: 'LiDAR A1 KM 12', type: 'Crash Detection', speed: '112 km/h avg', volume: '847 v/h', status: 'online', alert: true },
+  { id: 'L-A2-42', name: 'LiDAR A2 KM 42', type: 'Speed Monitor', speed: '68 km/h avg', volume: '322 v/h', status: 'online', alert: false },
+  { id: 'A-A2-18', name: 'Acoustic A2 Bridge', type: 'Flood Level', speed: 'N/A', volume: 'Flood: 2.1m', status: 'alert', alert: true },
+  { id: 'L-A3-4', name: 'LiDAR A3 KM 4', type: 'Impact Detection', speed: '91 km/h avg', volume: '512 v/h', status: 'online', alert: false },
+  { id: 'L-A4-8', name: 'LiDAR A4 KM 8', type: 'Construction Zone', speed: '32 km/h avg', volume: '208 v/h', status: 'online', alert: false },
+  { id: 'A-A1-22', name: 'Acoustic A1 KM 22', type: 'Speed Monitor', speed: '138 km/h peak', volume: '1,241 v/h', status: 'online', alert: true },
 ];
 
 export default function TransportDashboard() {

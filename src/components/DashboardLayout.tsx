@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import {
   Shield, Radio, Activity, Truck, Heart, Construction,
   LayoutDashboard, ChevronLeft, ChevronRight, Bell, Wifi, Satellite, Building2,
-  Sun, Moon, Clock, LogIn, LogOut
+  Sun, Moon, Clock, LogIn, LogOut, Zap, Flame
 } from 'lucide-react';
 import { signOut } from '@/lib/auth';
 import { useTheme } from './ThemeProvider';
@@ -12,12 +12,14 @@ import OfficialEmblem from './OfficialEmblem';
 
 const navItems = [
   { path: '/', label: 'Command Center', icon: LayoutDashboard, dept: 'command' },
-  { path: '/premier', label: "Premier's Office", icon: Building2, dept: 'premier' },
-  { path: '/saps', label: 'SAPS', icon: Radio, dept: 'saps' },
+  { path: '/premier', label: "Prime Minister's Office", icon: Building2, dept: 'premier' },
+  { path: '/saps', label: 'LMPS', icon: Radio, dept: 'saps' },
   { path: '/ems', label: 'EMS', icon: Activity, dept: 'ems' },
   { path: '/transport', label: 'Transport', icon: Truck, dept: 'transport' },
   { path: '/health', label: 'Health', icon: Heart, dept: 'health' },
   { path: '/roads', label: 'Roads Agency', icon: Construction, dept: 'roads' },
+  { path: '/electricity', label: 'LEC — Electricity', icon: Zap, dept: 'electricity' },
+  { path: '/fire', label: 'Fire & Rescue', icon: Flame, dept: 'fire' },
 ];
 
 export default function DashboardLayout({ children, title, deptBg }: { children: React.ReactNode; title: string; deptBg?: string }) {

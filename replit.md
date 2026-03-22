@@ -1,6 +1,6 @@
-# Provincial Safety Intelligence — Limpopo
+# National Safety Intelligence — Kingdom of Lesotho
 
-A government dashboard application for the Limpopo Provincial Safety Intelligence Command Center. Built with React, Vite, TypeScript, Tailwind CSS, and Shadcn/UI.
+A government dashboard application for the Kingdom of Lesotho National Safety Intelligence Command Centre (LSISTH). Built with React, Vite, TypeScript, Tailwind CSS, and Shadcn/UI.
 
 ## Architecture
 
@@ -24,12 +24,14 @@ src/
   pages/              # Route-level page components
     Index.tsx
     UnifiedCommandDashboard.tsx
-    PremierDashboard.tsx
-    SAPSDashboard.tsx
+    PremierDashboard.tsx      # Prime Minister's Office
+    SAPSDashboard.tsx         # LMPS — Lesotho Mounted Police Service
     EMSDashboard.tsx
     TransportDashboard.tsx
     HealthDashboard.tsx
     RoadsAgencyDashboard.tsx
+    ElectricityDashboard.tsx  # LEC — Lesotho Electricity Company
+    FireBrigadeDashboard.tsx  # LNFRS — Lesotho Fire & Rescue Service
     AuthLogin.tsx
     GovOnboarding.tsx
     NotFound.tsx

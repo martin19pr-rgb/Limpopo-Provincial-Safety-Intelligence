@@ -20,7 +20,7 @@ import { toast } from 'sonner';
 
 export default function PremierDashboard() {
   return (
-    <DashboardLayout title="Premier's Office — KPI Dashboard" deptBg="dept-bg-premier">
+    <DashboardLayout title="Prime Minister's Office — KPI Dashboard" deptBg="dept-bg-premier">
       <div className="relative">
         <ParticleField />
       </div>
@@ -168,7 +168,7 @@ export default function PremierDashboard() {
             <div className="dashboard-card">
               <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Weekly Compliance</h3>
               <div className="space-y-2">
-                {['SAPS', 'EMS', 'Transport', 'Health', 'Roads Agency'].map((dept, i) => {
+                {['LMPS', 'EMS', 'Transport', 'Health', 'Roads Agency', 'LEC', 'Fire & Rescue'].map((dept, i) => {
                   const vals = [91, 98, 78, 89, 75];
                   return (
                     <div key={dept} className="flex items-center gap-3">

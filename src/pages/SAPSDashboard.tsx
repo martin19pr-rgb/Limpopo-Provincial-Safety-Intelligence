@@ -108,7 +108,7 @@ export default function SAPSDashboard() {
                 <Shield className="w-7 h-7 text-info" />
               </motion.div>
               <div>
-                <h1 className="font-display text-sm font-bold text-foreground tracking-wider">SAPS — LIMPOPO COMMAND</h1>
+                <h1 className="font-display text-sm font-bold text-foreground tracking-wider">LMPS — NATIONAL COMMAND</h1>
                 <p className="text-[10px] text-muted-foreground font-display mt-0.5">AI-DRIVEN • BLOCKCHAIN-VERIFIED • DRONE-ENABLED</p>
               </div>
             </div>
@@ -206,7 +206,7 @@ export default function SAPSDashboard() {
                         {alert.sensorConfirmed && <span className="text-[9px] text-primary">✓ SENSOR</span>}
                       </div>
                       <button
-                        onClick={() => { playAlertSound('dispatch'); toast.success(`SAPS dispatch confirmed: ${alert.id}`); }}
+                        onClick={() => { playAlertSound('dispatch'); toast.success(`LMPS dispatch confirmed: ${alert.id}`); }}
                         className="mt-2 w-full py-1.5 rounded-lg bg-info/20 border border-info/30 text-info text-[10px] font-display hover:bg-info/30 transition-colors"
                       >
                         DISPATCH FLYING SQUAD

@@ -3,18 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, MicOff, Brain, X, Sparkles } from 'lucide-react';
 
 const aiRemarks = [
-  { text: "🚨 High crash probability detected on N1 KM 305 — dispatching nearest SAPS unit.", type: "alert" as const },
+  { text: "🚨 High crash probability detected on A1 KM 12 — dispatching nearest LMPS unit.", type: "alert" as const },
   { text: "📊 Response time improved 12% this week. PoW compliance trending upward across EMS.", type: "insight" as const },
-  { text: "🛰️ Iridium fallback activated for rural R81 corridor — coverage unbreakable.", type: "system" as const },
+  { text: "🛰️ Iridium fallback activated for rural A2 highland corridor — coverage unbreakable.", type: "system" as const },
   { text: "🚑 Ambulance Unit 247 ETA updated to 3min 42s. LiDAR confirmed crash severity.", type: "dispatch" as const },
-  { text: "⚠️ R71 Mountain Pass: Fog advisory issued. LED billboards updated automatically.", type: "alert" as const },
+  { text: "⚠️ A2 Mountain Pass: Fog advisory issued. LED billboards updated automatically.", type: "alert" as const },
   { text: "✅ Zero Deaths 2030 progress: 1,234 lives saved. Fatality rate down 34% YoY.", type: "insight" as const },
-  { text: "🔵 SAPS Unit 34 repositioned to Mall of the North — PoW score: 1,240 pts.", type: "dispatch" as const },
+  { text: "🔵 LMPS Unit 34 repositioned to Maseru CBD Market — PoW score: 1,240 pts.", type: "dispatch" as const },
   { text: "🌊 Flood sensor triggered at A2 Mountain Pass Bridge. Traffic rerouted via A3.", type: "alert" as const },
   { text: "📡 Starlink coverage expanded to Butha-Buthe. 42 new sensors online.", type: "system" as const },
   { text: "🏥 Dr. Mokoena on standby at Provincial Hospital. Medical readiness: 98%.", type: "dispatch" as const },
-  { text: "🚧 Construction zone M10 KM 4: Single lane active. Expected completion 3 days.", type: "system" as const },
-  { text: "📈 AI prediction: 78% chance of incident spike on N1 between 17:00-19:00 today.", type: "insight" as const },
+  { text: "🚧 Construction zone A3 KM 4: Single lane active. Expected completion 3 days.", type: "system" as const },
+  { text: "📈 AI prediction: 78% chance of incident spike on A1 between 17:00-19:00 today.", type: "insight" as const },
 ];
 
 const typeColors = {

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Shield, Radio, Activity, Truck, Heart, Construction, Building2 } from 'lucide-react';
+import { Shield, Radio, Activity, Truck, Heart, Construction, Building2, Zap, Flame } from 'lucide-react';
 
 const emblemConfig: Record<string, {
   icon: React.ElementType;
@@ -11,24 +11,24 @@ const emblemConfig: Record<string, {
 }> = {
   command: {
     icon: Shield,
-    name: 'LPISTH',
-    motto: 'Provincial Command',
+    name: 'LSISTH',
+    motto: 'National Command Centre',
     ringColor: 'stroke-primary',
     glowColor: 'drop-shadow-[0_0_8px_hsl(145,65%,38%,0.5)]',
     bgGradient: 'from-primary/10 to-primary/5',
   },
   premier: {
     icon: Building2,
-    name: 'PREMIER',
-    motto: 'Office of the Premier',
+    name: 'PM OFFICE',
+    motto: "Prime Minister's Office",
     ringColor: 'stroke-accent',
     glowColor: 'drop-shadow-[0_0_8px_hsl(43,96%,52%,0.5)]',
     bgGradient: 'from-accent/10 to-accent/5',
   },
   saps: {
     icon: Radio,
-    name: 'SAPS',
-    motto: 'To Protect & Serve',
+    name: 'LMPS',
+    motto: 'To Protect & Serve — Lesotho',
     ringColor: 'stroke-info',
     glowColor: 'drop-shadow-[0_0_8px_hsl(210,80%,42%,0.5)]',
     bgGradient: 'from-info/10 to-info/5',
@@ -64,6 +64,22 @@ const emblemConfig: Record<string, {
     ringColor: 'stroke-warning',
     glowColor: 'drop-shadow-[0_0_8px_hsl(30,70%,45%,0.5)]',
     bgGradient: 'from-warning/10 to-warning/5',
+  },
+  electricity: {
+    icon: Zap,
+    name: 'LEC',
+    motto: 'Lesotho Electricity Company',
+    ringColor: 'stroke-yellow-400',
+    glowColor: 'drop-shadow-[0_0_8px_hsl(48,96%,53%,0.5)]',
+    bgGradient: 'from-yellow-400/10 to-yellow-400/5',
+  },
+  fire: {
+    icon: Flame,
+    name: 'LNFRS',
+    motto: 'Lesotho Fire & Rescue Service',
+    ringColor: 'stroke-orange-500',
+    glowColor: 'drop-shadow-[0_0_8px_hsl(25,95%,55%,0.5)]',
+    bgGradient: 'from-orange-500/10 to-orange-500/5',
   },
 };
 
@@ -133,7 +149,7 @@ export default function DepartmentEmblem({ department, size = 'md', showLabel = 
 }
 
 export function DepartmentEmblemStrip() {
-  const depts = ['saps', 'ems', 'transport', 'health', 'roads'];
+  const depts = ['saps', 'ems', 'transport', 'health', 'roads', 'electricity', 'fire'];
   return (
     <motion.div
       className="flex items-center justify-center gap-6 py-3 px-4 rounded-lg bg-secondary/30 border border-border"

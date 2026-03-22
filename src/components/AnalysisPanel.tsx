@@ -13,7 +13,7 @@ interface AnalysisReading {
 
 const analysisData: AnalysisReading[] = [
   { label: 'Response Efficiency', value: '92%', status: 'good', detail: '20% improvement YoY. AI routing reduced avg ETA by 1.4min. Rural satellite coverage extended to 98.2%.', trend: 'up', source: 'AI Dispatch Engine' },
-  { label: 'Incident Hotspot Score', value: '78/100', status: 'warning', detail: 'N1 corridor remains highest risk. LiDAR sensors confirmed 34 incidents. Citizen reports correlate at 89%.', trend: 'up', source: 'Predictive Heatmap AI' },
+  { label: 'Incident Hotspot Score', value: '78/100', status: 'warning', detail: 'A1 corridor remains highest risk. LiDAR sensors confirmed 34 incidents. Citizen reports correlate at 89%.', trend: 'up', source: 'Predictive Heatmap AI' },
   { label: 'PoW Compliance Index', value: '87%', status: 'warning', detail: '5 workers flagged below threshold (<200 pts). Auto-dispatch skips low-scorers. 45% scored Excellent (1000+).', trend: 'up', source: 'PoW Engine' },
   { label: 'False Alert Suppression', value: '98.9%', status: 'good', detail: 'AI tuning reduced false positives by 15%. Acoustic + LiDAR dual-confirm now standard. Only 1.1% false rate.', trend: 'down', source: 'Sensor Fusion AI' },
   { label: 'Fatality Reduction', value: '-34% YoY', status: 'good', detail: 'Zero Deaths 2030 on track at 25%. Rural satellite deployment cut response gaps. 1,234 lives saved in 2024.', trend: 'down', source: 'Provincial Stats' },

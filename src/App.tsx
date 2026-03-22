@@ -10,6 +10,8 @@ import EMSDashboard from "./pages/EMSDashboard";
 import TransportDashboard from "./pages/TransportDashboard";
 import HealthDashboard from "./pages/HealthDashboard";
 import RoadsAgencyDashboard from "./pages/RoadsAgencyDashboard";
+import ElectricityDashboard from "./pages/ElectricityDashboard";
+import FireBrigadeDashboard from "./pages/FireBrigadeDashboard";
 import GovOnboarding from "./pages/GovOnboarding";
 import AuthLogin from "./pages/AuthLogin";
 import NotFound from "./pages/NotFound";
@@ -31,6 +33,8 @@ const App = () => (
           <Route path="/transport" element={<TransportDashboard />} />
           <Route path="/health" element={<HealthDashboard />} />
           <Route path="/roads" element={<RoadsAgencyDashboard />} />
+          <Route path="/electricity" element={<ElectricityDashboard />} />
+          <Route path="/fire" element={<FireBrigadeDashboard />} />
           <Route path="/onboarding" element={<GovOnboarding />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
