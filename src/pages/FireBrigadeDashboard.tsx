@@ -13,37 +13,39 @@ import { toast } from 'sonner';
 const UNITS_ACTIVE = 8;
 const AVG_RESPONSE = '4m 12s';
 const INCIDENTS_TODAY = 14;
-const STATIONS = 6;
+const STATIONS = 7;
 
 const activeIncidents = [
-  { id: 'FI-001', type: 'Structure Fire', location: 'Maseru Industrial Zone', severity: 'critical', unit: 'Fire Unit Maseru-1', eta: '1m 30s', status: 'en route', casualties: 0, time: '3m ago' },
-  { id: 'FI-002', type: 'Veld Fire', location: 'A2 Mountain Corridor, KM 38', severity: 'high', unit: 'Fire Unit Leribe-2', eta: '12m', status: 'on scene', casualties: 0, time: '18m ago' },
-  { id: 'FI-003', type: 'Vehicle Fire', location: 'A1 Highway KM 14', severity: 'medium', unit: 'Fire Unit Maseru-3', eta: 'On scene', status: 'on scene', casualties: 1, time: '31m ago' },
-  { id: 'FI-004', type: 'Hazmat Spill', location: 'Mafeteng Industrial Rd', severity: 'high', unit: 'Fire Unit Mafeteng-1', eta: '8m', status: 'dispatched', casualties: 0, time: '7m ago' },
+  { id: 'FI-001', type: 'Structure Fire', location: 'Polokwane Industrial Zone', severity: 'critical', unit: 'Fire Unit Polokwane-1', eta: '1m 30s', status: 'en route', casualties: 0, time: '3m ago' },
+  { id: 'FI-002', type: 'Veld Fire', location: 'N1 Bushveld Corridor, KM 38', severity: 'high', unit: 'Fire Unit Tzaneen-2', eta: '12m', status: 'on scene', casualties: 0, time: '18m ago' },
+  { id: 'FI-003', type: 'Vehicle Fire', location: 'N1 Highway KM 14', severity: 'medium', unit: 'Fire Unit Polokwane-3', eta: 'On scene', status: 'on scene', casualties: 1, time: '31m ago' },
+  { id: 'FI-004', type: 'Hazmat Spill', location: 'Mokopane Industrial Rd', severity: 'high', unit: 'Fire Unit Mokopane-1', eta: '8m', status: 'dispatched', casualties: 0, time: '7m ago' },
 ];
 
 const fireStations = [
-  { name: 'Maseru Central Fire Station', units: 4, available: 2, personnel: 24, status: 'operational', district: 'Maseru' },
-  { name: 'Leribe Fire Station', units: 2, available: 1, personnel: 12, status: 'operational', district: 'Leribe' },
-  { name: 'Mafeteng Fire Post', units: 2, available: 2, personnel: 10, status: 'operational', district: 'Mafeteng' },
-  { name: "Mohale's Hoek Station", units: 1, available: 1, personnel: 8, status: 'operational', district: "Mohale's Hoek" },
-  { name: 'Teyateyaneng Post', units: 1, available: 0, personnel: 6, status: 'limited', district: 'Berea' },
-  { name: 'Butha-Buthe Station', units: 2, available: 2, personnel: 10, status: 'operational', district: 'Butha-Buthe' },
+  { name: 'Polokwane Central Fire Station', units: 4, available: 2, personnel: 28, status: 'operational', district: 'Polokwane' },
+  { name: 'Tzaneen Fire Station', units: 3, available: 1, personnel: 16, status: 'operational', district: 'Greater Tzaneen' },
+  { name: 'Mokopane Fire Post', units: 2, available: 2, personnel: 12, status: 'operational', district: 'Mokopane' },
+  { name: 'Giyani Fire Station', units: 2, available: 1, personnel: 10, status: 'operational', district: 'Giyani' },
+  { name: 'Lephalale Fire Post', units: 1, available: 0, personnel: 8, status: 'limited', district: 'Lephalale' },
+  { name: 'Musina Fire Station', units: 2, available: 2, personnel: 10, status: 'operational', district: 'Musina' },
+  { name: 'Thohoyandou Station', units: 2, available: 2, personnel: 12, status: 'operational', district: 'Thulamela' },
 ];
 
 const fireUnits = [
-  { id: 'FU-001', name: 'Fire Unit Maseru-1', type: 'Heavy Tanker', status: 'responding', location: 'Maseru Industrial Zone', water: '80%', foam: '90%' },
-  { id: 'FU-002', name: 'Fire Unit Maseru-2', type: 'Medium Pumper', status: 'standby', location: 'Maseru Central Station', water: '100%', foam: '100%' },
-  { id: 'FU-003', name: 'Fire Unit Leribe-2', type: 'Veld Fire Unit', status: 'on scene', location: 'A2 Mountain Corridor', water: '45%', foam: '60%' },
-  { id: 'FU-004', name: 'Fire Unit Mafeteng-1', type: 'Hazmat Specialist', status: 'responding', location: 'En route Mafeteng', water: '100%', foam: '100%' },
-  { id: 'FU-005', name: 'Fire Unit Maseru-3', type: 'Light Rescue', status: 'on scene', location: 'A1 Highway KM 14', water: '70%', foam: '75%' },
+  { id: 'FU-001', name: 'Fire Unit Polokwane-1', type: 'Heavy Tanker', status: 'responding', location: 'Polokwane Industrial Zone', water: '80%', foam: '90%' },
+  { id: 'FU-002', name: 'Fire Unit Polokwane-2', type: 'Medium Pumper', status: 'standby', location: 'Polokwane Central Station', water: '100%', foam: '100%' },
+  { id: 'FU-003', name: 'Fire Unit Tzaneen-2', type: 'Veld Fire Unit', status: 'on scene', location: 'N1 Bushveld Corridor', water: '45%', foam: '60%' },
+  { id: 'FU-004', name: 'Fire Unit Mokopane-1', type: 'Hazmat Specialist', status: 'responding', location: 'En route Mokopane', water: '100%', foam: '100%' },
+  { id: 'FU-005', name: 'Fire Unit Polokwane-3', type: 'Light Rescue', status: 'on scene', location: 'N1 Highway KM 14', water: '70%', foam: '75%' },
 ];
 
 const riskZones = [
-  { area: 'Maseru Industrial Zone', risk: 'high', hazmat: true, lastInspection: '14 days ago', incidents30d: 3 },
-  { area: 'A2 Mountain Veld Corridor', risk: 'critical', hazmat: false, lastInspection: 'Seasonal', incidents30d: 7 },
-  { area: 'Leribe Market Area', risk: 'medium', hazmat: false, lastInspection: '30 days ago', incidents30d: 2 },
-  { area: 'Mafeteng Fuel Storage', risk: 'high', hazmat: true, lastInspection: '7 days ago', incidents30d: 1 },
+  { area: 'Polokwane Industrial Zone', risk: 'high', hazmat: true, lastInspection: '14 days ago', incidents30d: 3 },
+  { area: 'N1 Bushveld Corridor', risk: 'critical', hazmat: false, lastInspection: 'Seasonal', incidents30d: 9 },
+  { area: 'Tzaneen Market Area', risk: 'medium', hazmat: false, lastInspection: '30 days ago', incidents30d: 2 },
+  { area: 'Mokopane Fuel Storage', risk: 'high', hazmat: true, lastInspection: '7 days ago', incidents30d: 1 },
+  { area: 'Lephalale Power Station Vicinity', risk: 'high', hazmat: true, lastInspection: '10 days ago', incidents30d: 0 },
 ];
 
 const fireWorkers = mockWorkers.filter(w => w.department === 'fire');
@@ -78,7 +80,7 @@ export default function FireBrigadeDashboard() {
   };
 
   return (
-    <DashboardLayout title="LNFRS — Fire & Rescue Command" deptBg="dept-bg-ems">
+    <DashboardLayout title="Limpopo Fire & Rescue Command" deptBg="dept-bg-ems">
       <div className="space-y-5">
 
         {/* Hero */}
@@ -95,8 +97,8 @@ export default function FireBrigadeDashboard() {
                 <Flame className="w-7 h-7 text-orange-400" />
               </motion.div>
               <div>
-                <h1 className="font-display text-sm font-bold text-foreground tracking-wider">LNFRS — NATIONAL FIRE & RESCUE</h1>
-                <p className="text-[10px] text-muted-foreground font-display mt-0.5">LESOTHO NATIONAL FIRE & RESCUE SERVICE • AI-DISPATCHED • REAL-TIME</p>
+                <h1 className="font-display text-sm font-bold text-foreground tracking-wider">LIMPOPO FIRE & RESCUE SERVICE</h1>
+                <p className="text-[10px] text-muted-foreground font-display mt-0.5">LIMPOPO PROVINCE — AI-DISPATCHED • REAL-TIME COORDINATION</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -170,10 +172,10 @@ export default function FireBrigadeDashboard() {
                     </div>
                     <div className="space-y-2">
                       {[
-                        { insight: 'A2 mountain corridor veld fire expanding — wind speed 32km/h NW. Additional 2 units recommended.', severity: 'critical' },
-                        { insight: 'High fire weather index for next 48hrs — Lesotho highland areas on alert', severity: 'high' },
-                        { insight: 'Maseru industrial zone incident contained. 0 casualties. Structure loss: partial', severity: 'medium' },
-                        { insight: 'All 6 fire stations within response threshold. Average crew readiness: 97%', severity: 'low' },
+                        { insight: 'N1 bushveld corridor veld fire expanding — wind speed 32km/h NW. Additional 2 units recommended urgently.', severity: 'critical' },
+                        { insight: 'High fire weather index for next 48hrs — Limpopo bushveld areas on elevated alert. Lephalale district at risk.', severity: 'high' },
+                        { insight: 'Polokwane industrial zone incident contained. 0 casualties. Structure loss: partial', severity: 'medium' },
+                        { insight: 'All 7 fire stations within response threshold. Average crew readiness: 97%', severity: 'low' },
                       ].map((item, i) => (
                         <div key={i} className={`p-2.5 rounded-lg border text-[10px] leading-relaxed ${
                           item.severity === 'critical' ? 'bg-destructive/10 border-destructive/30 text-destructive' :
@@ -187,7 +189,7 @@ export default function FireBrigadeDashboard() {
                     </div>
                   </div>
                   <div className="dashboard-card">
-                    <h4 className="font-display text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">LNFRS Personnel</h4>
+                    <h4 className="font-display text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Fire Personnel</h4>
                     {fireWorkers.map(worker => (
                       <div key={worker.id} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                         <div>
@@ -208,7 +210,7 @@ export default function FireBrigadeDashboard() {
               <div className="space-y-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Flame className="w-4 h-4 text-destructive" />
-                  <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Active Incidents</h3>
+                  <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Active Incidents — Limpopo</h3>
                   <span className="ml-auto px-2 py-0.5 rounded-full bg-destructive/10 border border-destructive/30 text-[9px] text-destructive font-display">{activeIncidents.length} ACTIVE</span>
                 </div>
                 {activeIncidents.map(incident => (
@@ -256,7 +258,7 @@ export default function FireBrigadeDashboard() {
 
             {tab === 'stations' && (
               <div className="space-y-3">
-                <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2">Fire Stations — Lesotho</h3>
+                <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2">Fire Stations — Limpopo Province</h3>
                 {fireStations.map((station, i) => (
                   <motion.div key={station.name} className="dashboard-card" initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
                     <div className="flex items-center justify-between">
@@ -328,7 +330,7 @@ export default function FireBrigadeDashboard() {
               <div className="space-y-3">
                 <div className="flex items-center gap-2 mb-2">
                   <AlertTriangle className="w-4 h-4 text-destructive" />
-                  <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Fire Risk Zones</h3>
+                  <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Fire Risk Zones — Limpopo</h3>
                 </div>
                 {riskZones.map((zone, i) => (
                   <motion.div
@@ -355,7 +357,7 @@ export default function FireBrigadeDashboard() {
                 ))}
                 <div className="dashboard-card bg-orange-400/5 border-orange-400/20">
                   <p className="text-[10px] font-display text-orange-400">🔥 Fire Weather: HIGH index forecast. All veld-adjacent units on standby alert.</p>
-                  <p className="text-[9px] text-muted-foreground mt-1">LNFRS coordinating with Dept of Forestry on mountain zone monitoring. Wind gusts up to 45km/h expected.</p>
+                  <p className="text-[9px] text-muted-foreground mt-1">Coordinating with DAFF (Dept of Agriculture, Forestry & Fisheries) on Limpopo mountain and bushveld zone monitoring. Wind gusts up to 45km/h expected in the lowveld.</p>
                 </div>
               </div>
             )}

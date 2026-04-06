@@ -15,9 +15,9 @@ interface Junction {
 }
 
 const defaultJunctions: Junction[] = [
-  { name: 'A1/A3 Interchange', road: 'A1 Highway', direction: 'Northbound & Southbound', mode: 'auto', activeLight: 'green', cycleTime: 45, vehiclesPerMin: 82, coordinates: '29.3°S, 27.5°E' },
-  { name: 'Maseru CBD Circle', road: "Kingsway St", direction: 'All directions', mode: 'auto', activeLight: 'red', cycleTime: 60, vehiclesPerMin: 120, coordinates: '29.3°S, 27.5°E' },
-  { name: 'Maseru South Junction', road: 'A1 South Rd', direction: 'East-West', mode: 'auto', activeLight: 'amber', cycleTime: 40, vehiclesPerMin: 55, coordinates: '29.4°S, 27.5°E' },
+  { name: 'A1/A3 Interchange', road: 'A1 Highway', direction: 'Northbound & Southbound', mode: 'auto', activeLight: 'green', cycleTime: 45, vehiclesPerMin: 82, coordinates: '23.9°S, 29.5°E' },
+  { name: 'Polokwane CBD Circle', road: "Thabo Mbeki St", direction: 'All directions', mode: 'auto', activeLight: 'red', cycleTime: 60, vehiclesPerMin: 120, coordinates: '23.9°S, 29.5°E' },
+  { name: 'Polokwane South Junction', road: 'A1 South Rd', direction: 'East-West', mode: 'auto', activeLight: 'amber', cycleTime: 40, vehiclesPerMin: 55, coordinates: '24.0°S, 29.5°E' },
   { name: 'A2/A3 Crossing', road: 'A3 Regional', direction: 'Eastbound to Teyateyaneng', mode: 'auto', activeLight: 'green', cycleTime: 50, vehiclesPerMin: 68, coordinates: '29.2°S, 27.7°E' },
   { name: 'Mafeteng A1 Entry', road: 'A1 Highway', direction: 'Southbound entry ramp', mode: 'auto', activeLight: 'green', cycleTime: 35, vehiclesPerMin: 45, coordinates: '29.8°S, 27.2°E' },
   { name: 'Leribe A4/A5 Fork', road: 'A4 Regional', direction: 'Northwest Split', mode: 'auto', activeLight: 'red', cycleTime: 55, vehiclesPerMin: 73, coordinates: '28.9°S, 28.1°E' },

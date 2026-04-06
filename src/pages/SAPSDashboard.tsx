@@ -7,7 +7,7 @@ import { playAlertSound, unlockAudio } from '@/lib/alertSound';
 import {
   Shield, Brain, Cpu, Camera, Radio, Eye, AlertTriangle, CheckCircle,
   Zap, Lock, Fingerprint, Activity, TrendingUp, Users, Crosshair,
-  Drone, Scan, BarChart3, CircleAlert, Siren
+  Scan, BarChart3, CircleAlert, Siren
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -17,22 +17,22 @@ const BLOCKCHAIN_OFFICERS = 500;
 const BLOCKCHAIN_COMPLIANCE = 87;
 
 const preCrimeAlerts = [
-  { id: 'PC-001', zone: 'Maseru CBD Market', risk: 94, type: 'Armed Robbery', eta: '12 min', confidence: 91, officers: 3 },
-  { id: 'PC-002', zone: 'A1 KM 12 Corridor', risk: 87, type: 'Carjacking', eta: '8 min', confidence: 85, officers: 2 },
-  { id: 'PC-003', zone: 'Leribe Night Market', risk: 76, type: 'Gang Activity', eta: '22 min', confidence: 79, officers: 4 },
-  { id: 'PC-004', zone: 'Maseru Old Town', risk: 68, type: 'Pickpocketing', eta: '35 min', confidence: 72, officers: 1 },
+  { id: 'PC-001', zone: 'Polokwane CBD Market', risk: 94, type: 'Armed Robbery', eta: '12 min', confidence: 91, officers: 3 },
+  { id: 'PC-002', zone: 'N1 KM 12 Corridor', risk: 87, type: 'Carjacking', eta: '8 min', confidence: 85, officers: 2 },
+  { id: 'PC-003', zone: 'Giyani Night Market', risk: 76, type: 'Gang Activity', eta: '22 min', confidence: 79, officers: 4 },
+  { id: 'PC-004', zone: 'Polokwane Old Town', risk: 68, type: 'Pickpocketing', eta: '35 min', confidence: 72, officers: 1 },
 ];
 
 const lprMatches = [
-  { plate: 'LSO 421 A', status: 'STOLEN', location: 'A1 N/B KM 12', threat: 'critical', time: '2m ago' },
-  { plate: 'LSO 882 B', status: 'WANTED', location: 'A2 Teyateyaneng', threat: 'high', time: '7m ago' },
-  { plate: 'LSO 339 C', status: 'FLAGGED', location: 'Maseru City Centre', threat: 'medium', time: '14m ago' },
+  { plate: 'LP 421 AC', status: 'STOLEN', location: 'N1 N/B KM 12', threat: 'critical', time: '2m ago' },
+  { plate: 'LP 882 BC', status: 'WANTED', location: 'R71 Tzaneen', threat: 'high', time: '7m ago' },
+  { plate: 'LP 339 CC', status: 'FLAGGED', location: 'Polokwane City Centre', threat: 'medium', time: '14m ago' },
 ];
 
 const droneFeed = [
-  { id: 'DR-01', status: 'airborne', location: 'A1 Highway Sector 3', battery: 78, altitude: '120m', task: 'Incident surveillance' },
-  { id: 'DR-02', status: 'airborne', location: 'Maseru CBD Market', battery: 91, altitude: '85m', task: 'Pre-crime patrol' },
-  { id: 'DR-03', status: 'standby', location: 'Maseru LMPS HQ Pad', battery: 100, altitude: '0m', task: 'On standby' },
+  { id: 'DR-01', status: 'airborne', location: 'N1 Highway Sector 3', battery: 78, altitude: '120m', task: 'Incident surveillance' },
+  { id: 'DR-02', status: 'airborne', location: 'Polokwane CBD Market', battery: 91, altitude: '85m', task: 'Pre-crime patrol' },
+  { id: 'DR-03', status: 'standby', location: 'Polokwane SAPS HQ Pad', battery: 100, altitude: '0m', task: 'On standby' },
 ];
 
 const activeOfficers = mockWorkers.filter(w => w.department === 'saps');
@@ -70,7 +70,7 @@ export default function SAPSDashboard() {
   const generateAIReport = () => {
     setGeneratingReport(true);
     setAiReport('');
-    const report = `LSISTH AI CRISIS REPORT — LMPS LESOTHO\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nGenerated: ${new Date().toLocaleString('en-LS')}\nClassification: RESTRICTED\n\n[AI ANALYSIS — 87% ACCURACY]\nCurrent threat level: ELEVATED\nActive pre-crime predictions: ${preCrimeAlerts.length}\nHighest risk zone: Maseru CBD Market (94%)\n\n[BLOCKCHAIN STATUS]\n${BLOCKCHAIN_OFFICERS} officers tracked on-chain\nCompliance rate: ${BLOCKCHAIN_COMPLIANCE}%\nLast sync: ${new Date().toLocaleTimeString('en-LS')}\n\n[LPR INTELLIGENCE]\n${lprMatches.length} vehicles flagged in last hour\n1 stolen vehicle intercepted — A1 KM 12\n\n[DRONE NETWORK]\n2/3 drones airborne\nTotal surveillance coverage: 47km²\n\n[RECOMMENDATION]\nDeploy Flying Squad to Maseru CBD sector.\nActivate green-wave traffic for emergency response.\nAlert EMS — standby for possible medical response.`;
+    const report = `LSISTH AI CRISIS REPORT — SAPS LIMPOPO\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nGenerated: ${new Date().toLocaleString('en-ZA')}\nClassification: RESTRICTED\n\n[AI ANALYSIS — 87% ACCURACY]\nCurrent threat level: ELEVATED\nActive pre-crime predictions: ${preCrimeAlerts.length}\nHighest risk zone: Polokwane CBD Market (94%)\n\n[BLOCKCHAIN STATUS]\n${BLOCKCHAIN_OFFICERS} officers tracked on-chain\nCompliance rate: ${BLOCKCHAIN_COMPLIANCE}%\nLast sync: ${new Date().toLocaleTimeString('en-ZA')}\n\n[LPR INTELLIGENCE]\n${lprMatches.length} vehicles flagged in last hour\n1 stolen vehicle intercepted — N1 KM 12\n\n[DRONE NETWORK]\n2/3 drones airborne\nTotal surveillance coverage: 47km²\n\n[RECOMMENDATION]\nDeploy Flying Squad to Polokwane CBD sector.\nActivate green-wave traffic for emergency response.\nAlert EMS — standby for possible medical response.`;
     let i = 0;
     const interval = setInterval(() => {
       setAiReport(report.slice(0, i));
@@ -88,7 +88,7 @@ export default function SAPSDashboard() {
   ];
 
   return (
-    <DashboardLayout title="LMPS — AI Command Centre" deptBg="dept-bg-saps">
+    <DashboardLayout title="SAPS — AI Command Centre" deptBg="dept-bg-saps">
       <div className="space-y-5">
 
         {/* Hero header */}
@@ -108,8 +108,8 @@ export default function SAPSDashboard() {
                 <Shield className="w-7 h-7 text-info" />
               </motion.div>
               <div>
-                <h1 className="font-display text-sm font-bold text-foreground tracking-wider">LMPS — NATIONAL COMMAND</h1>
-                <p className="text-[10px] text-muted-foreground font-display mt-0.5">AI-DRIVEN • BLOCKCHAIN-VERIFIED • DRONE-ENABLED</p>
+                <h1 className="font-display text-sm font-bold text-foreground tracking-wider">SAPS — LIMPOPO COMMAND</h1>
+                <p className="text-[10px] text-muted-foreground font-display mt-0.5">SOUTH AFRICAN POLICE SERVICE • AI-DRIVEN • BLOCKCHAIN-VERIFIED • DRONE-ENABLED</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -180,7 +180,6 @@ export default function SAPSDashboard() {
             <motion.div key="overview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
               <SmartProvincialMap filterDept="saps" />
 
-              {/* Active incidents */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="glass-card p-4 space-y-3">
                   <div className="flex items-center gap-2">
@@ -206,7 +205,7 @@ export default function SAPSDashboard() {
                         {alert.sensorConfirmed && <span className="text-[9px] text-primary">✓ SENSOR</span>}
                       </div>
                       <button
-                        onClick={() => { playAlertSound('dispatch'); toast.success(`LMPS dispatch confirmed: ${alert.id}`); }}
+                        onClick={() => { playAlertSound('dispatch'); toast.success(`SAPS dispatch confirmed: ${alert.id}`); }}
                         className="mt-2 w-full py-1.5 rounded-lg bg-info/20 border border-info/30 text-info text-[10px] font-display hover:bg-info/30 transition-colors"
                       >
                         DISPATCH FLYING SQUAD
@@ -220,7 +219,7 @@ export default function SAPSDashboard() {
                     <Users className="w-4 h-4 text-info" />
                     <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Officer Tracking — PoW</h3>
                   </div>
-                  {activeOfficers.map(w => (
+                  {activeOfficers.length > 0 ? activeOfficers.map(w => (
                     <div key={w.id} className="flex items-center gap-3 p-2.5 rounded-xl bg-secondary/20 border border-border/50">
                       <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${w.status === 'responding' ? 'bg-destructive pulse-live' : w.status === 'standby' ? 'bg-accent' : 'bg-primary'}`} />
                       <div className="flex-1 min-w-0">
@@ -232,7 +231,20 @@ export default function SAPSDashboard() {
                         {w.bodycamActive && <p className="text-[9px] text-info">📷 CAM</p>}
                       </div>
                     </div>
-                  ))}
+                  )) : (
+                    <div className="space-y-2">
+                      {mockWorkers.slice(0, 3).map(w => (
+                        <div key={w.id} className="flex items-center gap-3 p-2.5 rounded-xl bg-secondary/20 border border-border/50">
+                          <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${w.status === 'responding' ? 'bg-destructive pulse-live' : 'bg-accent'}`} />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-foreground font-medium truncate">{w.name}</p>
+                            <p className="text-[9px] text-muted-foreground">{w.role} • {w.location}</p>
+                          </div>
+                          <p className="font-display text-xs text-accent">{w.points} pts</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -309,7 +321,6 @@ export default function SAPSDashboard() {
                 </div>
               </div>
 
-              {/* AI Report Generator */}
               <div className="glass-card p-5">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
@@ -361,7 +372,7 @@ export default function SAPSDashboard() {
                   ))}
                 </div>
                 <div className="space-y-2">
-                  {activeOfficers.map((w, i) => {
+                  {mockWorkers.slice(0, 5).map((w, i) => {
                     const hash = `0x${Math.random().toString(16).slice(2, 10).toUpperCase()}...${Math.random().toString(16).slice(2, 6).toUpperCase()}`;
                     const compliant = w.standbyCompliance >= 85;
                     return (
@@ -414,51 +425,33 @@ export default function SAPSDashboard() {
                             {match.status}
                           </span>
                         </div>
-                        <p className="text-[10px] text-muted-foreground mt-1">{match.location}</p>
-                        <div className="flex items-center justify-between mt-2">
-                          <span className="text-[9px] text-muted-foreground">{match.time}</span>
-                          <button
-                            onClick={() => { playAlertSound('high'); toast.success(`Intercept alert sent for ${match.plate}`); }}
-                            className="px-2 py-1 rounded-lg bg-info/20 text-info text-[9px] font-display border border-info/30 hover:bg-info/30"
-                          >
-                            INTERCEPT
-                          </button>
-                        </div>
+                        <p className="text-[10px] text-muted-foreground mt-1">{match.location} • {match.time}</p>
+                        <button
+                          onClick={() => { playAlertSound('dispatch'); toast.success(`SAPS intercepting ${match.plate}`); }}
+                          className="mt-2 w-full py-1 rounded-lg bg-info/10 border border-info/20 text-info text-[9px] font-display hover:bg-info/20"
+                        >
+                          INTERCEPT
+                        </button>
                       </motion.div>
                     ))}
                   </div>
                 </div>
-
                 <div className="glass-card p-5">
                   <div className="flex items-center gap-2 mb-4">
                     <Camera className="w-4 h-4 text-primary" />
-                    <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Bodycam Live Sync</h3>
+                    <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Bodycam Status</h3>
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {activeOfficers.filter(w => w.bodycamActive).map((w, i) => (
-                      <motion.div
-                        key={w.id}
-                        className="relative rounded-xl overflow-hidden bg-black border border-primary/20 aspect-video"
-                        whileHover={{ scale: 1.03 }}
-                      >
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="text-center">
-                            <Camera className="w-8 h-8 text-primary/40 mx-auto mb-1" />
-                            <p className="text-[8px] text-muted-foreground font-display">LIVE FEED</p>
-                          </div>
+                  <div className="space-y-2">
+                    {mockWorkers.filter(w => w.bodycamActive !== undefined).map((w, i) => (
+                      <div key={w.id} className="flex items-center gap-3 p-2 rounded-lg bg-secondary/20 border border-border/50">
+                        <div className={`w-2 h-2 rounded-full ${w.bodycamActive ? 'bg-primary pulse-live' : 'bg-muted'}`} />
+                        <div className="flex-1">
+                          <p className="text-[11px] text-foreground">{w.name}</p>
+                          <p className="text-[9px] text-muted-foreground">{w.role}</p>
                         </div>
-                        <div className="absolute top-1.5 left-1.5 flex items-center gap-1">
-                          <motion.div className="w-1.5 h-1.5 rounded-full bg-destructive" animate={{ opacity: [1, 0] }} transition={{ duration: 1, repeat: Infinity }} />
-                          <span className="text-[8px] font-display text-destructive">REC</span>
-                        </div>
-                        <div className="absolute bottom-1.5 left-1.5 right-1.5">
-                          <p className="text-[8px] text-white/80 font-display truncate">{w.name}</p>
-                        </div>
-                      </motion.div>
-                    ))}
-                    {activeOfficers.filter(w => !w.bodycamActive).slice(0, 2).map((w, i) => (
-                      <div key={w.id} className="relative rounded-xl overflow-hidden bg-secondary/30 border border-border aspect-video flex items-center justify-center">
-                        <p className="text-[8px] text-muted-foreground font-display">CAM OFFLINE</p>
+                        <span className={`text-[9px] font-display ${w.bodycamActive ? 'text-primary' : 'text-muted-foreground'}`}>
+                          {w.bodycamActive ? '📷 LIVE' : '⬜ OFF'}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -468,56 +461,48 @@ export default function SAPSDashboard() {
           )}
 
           {tab === 'drones' && (
-            <motion.div key="drones" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div key="drones" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
               <div className="glass-card p-5">
-                <div className="flex items-center gap-2 mb-5">
+                <div className="flex items-center gap-3 mb-4">
                   <Crosshair className="w-5 h-5 text-primary" />
-                  <h3 className="font-display text-sm font-bold text-foreground uppercase tracking-widest">Provincial Drone Network</h3>
-                  <span className="ml-auto text-[10px] font-display text-primary px-2 py-0.5 rounded-full border border-primary/30 bg-primary/10">
-                    2/3 AIRBORNE
-                  </span>
+                  <div>
+                    <h3 className="font-display text-sm font-bold text-foreground">SAPS DRONE SURVEILLANCE NETWORK</h3>
+                    <p className="text-[10px] text-muted-foreground">Limpopo Province — 47km² coverage</p>
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   {droneFeed.map((drone, i) => (
                     <motion.div
                       key={drone.id}
-                      className={`p-4 rounded-2xl border ${drone.status === 'airborne' ? 'border-primary/30 bg-primary/5 ai-glow' : 'border-border bg-secondary/10'}`}
+                      className={`p-4 rounded-2xl border ${drone.status === 'airborne' ? 'border-primary/30 bg-primary/5' : 'border-border bg-secondary/20'}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.15 }}
+                      transition={{ delay: i * 0.1 }}
                     >
                       <div className="flex items-center justify-between mb-3">
-                        <span className="font-display text-sm font-bold text-foreground">{drone.id}</span>
-                        <span className={`text-[9px] px-2 py-0.5 rounded-full border font-display uppercase ${drone.status === 'airborne' ? 'bg-primary/20 text-primary border-primary/30' : 'bg-secondary text-muted-foreground border-border'}`}>
-                          {drone.status}
-                        </span>
+                        <span className="font-display text-xs font-bold text-foreground">{drone.id}</span>
+                        <motion.div
+                          animate={drone.status === 'airborne' ? { rotate: 360 } : {}}
+                          transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                        >
+                          <Crosshair className={`w-4 h-4 ${drone.status === 'airborne' ? 'text-primary' : 'text-muted-foreground'}`} />
+                        </motion.div>
                       </div>
-                      {drone.status === 'airborne' && (
-                        <div className="aspect-video rounded-xl bg-black border border-primary/20 mb-3 flex items-center justify-center relative overflow-hidden">
-                          <motion.div
-                            className="w-6 h-6 border-2 border-primary rounded-full"
-                            animate={{ scale: [1, 2, 1], opacity: [1, 0, 1] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
-                          <div className="absolute top-2 left-2 text-[8px] font-display text-primary/80">{drone.altitude} ALT</div>
-                          <div className="absolute bottom-2 left-2 text-[8px] font-display text-white/60">{drone.location}</div>
+                      <span className={`text-[9px] px-2 py-0.5 rounded-full font-display uppercase ${drone.status === 'airborne' ? 'bg-primary/20 text-primary' : 'bg-secondary text-muted-foreground'}`}>
+                        {drone.status}
+                      </span>
+                      <p className="text-[10px] text-foreground mt-2">{drone.location}</p>
+                      <p className="text-[9px] text-muted-foreground">{drone.task}</p>
+                      <div className="mt-3 space-y-1">
+                        <div className="flex justify-between text-[9px]">
+                          <span className="text-muted-foreground">Battery</span>
+                          <span className={`font-display ${drone.battery < 30 ? 'text-destructive' : 'text-primary'}`}>{drone.battery}%</span>
                         </div>
-                      )}
-                      <p className="text-[10px] text-muted-foreground">{drone.task}</p>
-                      <div className="mt-2 flex justify-between items-center">
-                        <span className="text-[9px] text-muted-foreground">Battery</span>
-                        <span className={`font-display text-[10px] ${drone.battery > 60 ? 'text-primary' : 'text-destructive'}`}>{drone.battery}%</span>
+                        <div className="h-1.5 rounded-full bg-secondary/50">
+                          <div className={`h-1.5 rounded-full ${drone.battery < 30 ? 'bg-destructive' : 'bg-primary'}`} style={{ width: `${drone.battery}%` }} />
+                        </div>
+                        <p className="text-[9px] text-muted-foreground">Altitude: {drone.altitude}</p>
                       </div>
-                      <div className="h-1 rounded-full bg-secondary/50 mt-1">
-                        <div className={`h-1 rounded-full ${drone.battery > 60 ? 'bg-primary' : 'bg-destructive'}`} style={{ width: `${drone.battery}%` }} />
-                      </div>
-                      <button
-                        onClick={() => { playAlertSound('dispatch'); toast.success(`${drone.id} command sent`); }}
-                        className="mt-3 w-full py-1.5 rounded-lg bg-primary/20 border border-primary/30 text-primary text-[10px] font-display hover:bg-primary/30 transition-colors"
-                      >
-                        {drone.status === 'airborne' ? 'REDIRECT DRONE' : 'LAUNCH DRONE'}
-                      </button>
                     </motion.div>
                   ))}
                 </div>

@@ -25,14 +25,14 @@ const constructionZones = [
 ];
 
 const policePostings = [
-  { id: 'PP-1', name: 'LMPS Unit 247', lat: -29.31, lng: 27.48, status: 'on duty', score: 1240 },
-  { id: 'PP-2', name: 'LMPS Flying Squad 12', lat: -29.32, lng: 27.50, status: 'on duty', score: 1580 },
+  { id: 'PP-1', name: 'SAPS Unit 247', lat: -23.91, lng: 29.48, status: 'on duty', score: 1240 },
+  { id: 'PP-2', name: 'SAPS Flying Squad 12', lat: -23.92, lng: 29.50, status: 'on duty', score: 1580 },
   { id: 'PP-3', name: 'Traffic Unit 19', lat: -29.15, lng: 27.77, status: 'standby', score: 890 },
-  { id: 'PP-4', name: 'K9 Unit Maseru', lat: -29.35, lng: 27.52, status: 'on duty', score: 720 },
+  { id: 'PP-4', name: 'K9 Unit Polokwane', lat: -23.95, lng: 29.52, status: 'on duty', score: 720 },
 ];
 
 const aidInProgress = [
-  { id: 'AID-1', name: 'Ambulance Unit 247', lat: -29.28, lng: 27.51, destination: 'A1 Highway Crash', eta: '3m 42s', moving: true },
+  { id: 'AID-1', name: 'Ambulance Unit 247', lat: -29.28, lng: 29.51, destination: 'A1 Highway Crash', eta: '3m 42s', moving: true },
   { id: 'AID-2', name: 'Fire Unit 7', lat: -29.52, lng: 27.88, destination: 'A2 Mountain Incident', eta: '6m', moving: true },
   { id: 'AID-3', name: 'Ambulance Unit 112', lat: -29.15, lng: 27.77, destination: 'Teyateyaneng Area', eta: '5m 30s', moving: true },
 ];
@@ -87,10 +87,10 @@ export default function ProvinceMap() {
   ];
 
   const workerPositions = [
-    { lat: -29.31, lng: 27.48 }, { lat: -29.15, lng: 27.78 }, { lat: -29.35, lng: 27.52 },
-    { lat: -28.88, lng: 28.05 }, { lat: -29.82, lng: 27.23 }, { lat: -29.32, lng: 27.50 },
-    { lat: -30.15, lng: 27.47 }, { lat: -28.77, lng: 28.25 }, { lat: -29.52, lng: 28.60 },
-    { lat: -29.40, lng: 27.65 },
+    { lat: -23.91, lng: 29.48 }, { lat: -29.15, lng: 27.78 }, { lat: -23.95, lng: 29.52 },
+    { lat: -28.88, lng: 28.05 }, { lat: -29.82, lng: 27.23 }, { lat: -23.92, lng: 29.50 },
+    { lat: -30.15, lng: 29.47 }, { lat: -28.77, lng: 28.25 }, { lat: -29.52, lng: 28.60 },
+    { lat: -24.00, lng: 27.65 },
   ];
 
   return (
@@ -205,7 +205,7 @@ export default function ProvinceMap() {
                 filter="url(#glow)"
               />
 
-              {/* Major routes with neon glow — Lesotho */}
+              {/* Major routes with neon glow — Limpopo */}
               {activeLayers.includes('routes') && (
                 <>
                   {/* A1 — Main North-South */}

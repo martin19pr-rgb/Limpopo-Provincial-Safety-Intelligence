@@ -5,17 +5,17 @@ import emblemEms from '@/assets/emblem-ems.jpeg';
 import emblemTransport from '@/assets/emblem-transport.jpeg';
 import emblemHealth from '@/assets/emblem-health.jpeg';
 import emblemRoads from '@/assets/emblem-roads.jpeg';
-import emblemCoatOfArms from '@/assets/coat-of-arms-lesotho.jpg';
+import emblemCoatOfArms from '@/assets/coat-of-arms-sa.jpg';
 
 const emblemMap: Record<string, { src: string; alt: string }> = {
-  saps: { src: emblemSaps, alt: 'Lesotho Mounted Police Service Emblem' },
-  lmps: { src: emblemSaps, alt: 'Lesotho Mounted Police Service Emblem' },
+  saps: { src: emblemSaps, alt: 'South African Police Service Emblem' },
+  lmps: { src: emblemSaps, alt: 'South African Police Service Emblem' },
   ems: { src: emblemEms, alt: 'Emergency Medical Services Emblem' },
-  transport: { src: emblemTransport, alt: 'Lesotho Ministry of Transport Emblem' },
-  health: { src: emblemHealth, alt: 'Lesotho Ministry of Health Emblem' },
-  roads: { src: emblemRoads, alt: 'Roads Directorate Lesotho Emblem' },
-  premier: { src: emblemCoatOfArms, alt: 'Kingdom of Lesotho Coat of Arms' },
-  command: { src: emblemCoatOfArms, alt: 'National Safety Intelligence — Kingdom of Lesotho' },
+  transport: { src: emblemTransport, alt: 'Limpopo Department of Transport Emblem' },
+  health: { src: emblemHealth, alt: 'Limpopo Department of Health Emblem' },
+  roads: { src: emblemRoads, alt: 'Roads Agency Limpopo Emblem' },
+  premier: { src: emblemCoatOfArms, alt: 'Republic of South Africa Coat of Arms' },
+  command: { src: emblemCoatOfArms, alt: 'National Safety Intelligence — Limpopo, South Africa' },
 };
 
 interface Props {

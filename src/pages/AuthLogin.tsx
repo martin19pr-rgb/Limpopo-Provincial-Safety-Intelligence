@@ -4,7 +4,7 @@ import { Shield, Fingerprint, Eye, Mail, Lock, AlertTriangle, CheckCircle, Loade
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { signIn, signUp, getSession } from '@/lib/auth';
-import coatOfArms from '@/assets/coat-of-arms-lesotho.jpg';
+import coatOfArms from '@/assets/coat-of-arms-sa.jpg';
 
 type AuthMode = 'login' | 'signup' | 'biometric' | 'otp';
 
@@ -73,10 +73,10 @@ export default function AuthLogin() {
   };
 
   const auditLog = [
-    { time: '14:32:18', event: 'PM login — Maseru Government HQ', status: 'success' },
+    { time: '14:32:18', event: 'PM login — Polokwane Government HQ', status: 'success' },
     { time: '14:28:05', event: 'Dir. Nthabiseng — EMS Dashboard', status: 'success' },
     { time: '14:15:42', event: 'Unknown device — blocked', status: 'failed' },
-    { time: '13:58:11', event: 'Cmdr. Motsoari — LMPS Command', status: 'success' },
+    { time: '13:58:11', event: 'Cmdr. Motsoari — SAPS Command', status: 'success' },
   ];
 
   return (
@@ -172,7 +172,7 @@ export default function AuthLogin() {
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <input
                         type="email" value={email} onChange={e => setEmail(e.target.value)}
-                        placeholder="official@lesotho.gov.ls"
+                        placeholder="official@limpopo.gov.za"
                         className="w-full pl-10 pr-4 py-3 rounded-lg bg-secondary/50 text-foreground text-sm border border-border focus:border-primary focus:outline-none transition-colors"
                       />
                     </div>
@@ -274,7 +274,7 @@ export default function AuthLogin() {
                     <label className="text-[10px] font-display text-muted-foreground uppercase tracking-widest mb-1 block">Government Email</label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                      <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="official@lesotho.gov.ls"
+                      <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="official@limpopo.gov.za"
                         className="w-full pl-10 pr-4 py-3 rounded-lg bg-secondary/50 text-foreground text-sm border border-border focus:border-primary focus:outline-none" />
                     </div>
                   </div>

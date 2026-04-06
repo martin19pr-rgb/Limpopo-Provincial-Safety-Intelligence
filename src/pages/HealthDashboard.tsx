@@ -19,11 +19,11 @@ const outbreakMonitor = [
   { disease: 'Cholera', region: 'Mafeteng Area', cases: 2, trend: 'stable', risk: 'low' },
   { disease: 'Malaria', region: "Mohale's Hoek District", cases: 14, trend: 'up', risk: 'medium' },
   { disease: 'COVID variants', region: 'National', cases: 87, trend: 'down', risk: 'low' },
-  { disease: 'Meningitis', region: 'Maseru', cases: 0, trend: 'stable', risk: 'low' },
+  { disease: 'Meningitis', region: 'Polokwane', cases: 0, trend: 'stable', risk: 'low' },
 ];
 
 const medAI = [
-  { id: 'M-AI-01', alert: 'Cardiac event cluster — Maseru North (3 in 2hrs)', severity: 'high', action: 'EMS + LMPS pre-deployed', time: '4m ago' },
+  { id: 'M-AI-01', alert: 'Cardiac event cluster — Polokwane North (3 in 2hrs)', severity: 'high', action: 'EMS + SAPS pre-deployed', time: '4m ago' },
   { id: 'M-AI-02', alert: 'Trauma surge predicted — A2 weekend mountain traffic', severity: 'medium', action: 'Extra trauma teams on standby', time: '12m ago' },
   { id: 'M-AI-03', alert: 'ICU capacity below 15% — Leribe Hospital', severity: 'critical', action: 'Patient rerouting activated', time: '27m ago' },
   { id: 'M-AI-04', alert: "Malaria uptick — Mohale's Hoek seasonal pattern", severity: 'medium', action: 'Community health alerts sent', time: '1h ago' },

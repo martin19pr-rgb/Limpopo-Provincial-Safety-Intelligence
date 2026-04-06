@@ -18,13 +18,13 @@ const POTHOLE_DETECTED_TODAY = 7;
 
 const smartAlerts = [
   { id: 'SR-001', location: 'A2 Mountain Pass Bridge', type: 'Flood Risk', severity: 'critical', sensor: 'Acoustic + LiDAR', action: 'Road closed', time: '3m ago' },
-  { id: 'SR-002', location: 'A1 KM 18 Maseru', type: 'Pothole Cluster', severity: 'high', sensor: 'AI Camera', action: 'Repair crew deployed', time: '17m ago' },
+  { id: 'SR-002', location: 'N1 KM 18 Polokwane', type: 'Pothole Cluster', severity: 'high', sensor: 'AI Camera', action: 'Repair crew deployed', time: '17m ago' },
   { id: 'SR-003', location: 'A2 Pass Descent — Semonkong', type: 'Erosion Risk', severity: 'high', sensor: 'Satellite + LiDAR', action: 'Speed limit reduced', time: '42m ago' },
   { id: 'SR-004', location: 'A3 Teyateyaneng KM 4', type: 'Pothole', severity: 'medium', sensor: 'Citizen report + AI', action: 'Scheduled repair', time: '1h ago' },
 ];
 
 const infrastructureHealth = [
-  { road: 'A1 Maseru-North', km: 87, score: 78, status: 'fair', issues: 3 },
+  { road: 'N1 Polokwane-North', km: 87, score: 78, status: 'fair', issues: 3 },
   { road: 'A2 Mountain Pass', km: 54, score: 62, status: 'poor', issues: 7 },
   { road: 'A2 Semonkong Rd', km: 42, score: 55, status: 'poor', issues: 9 },
   { road: 'A4 Leribe Road', km: 36, score: 88, status: 'good', issues: 1 },

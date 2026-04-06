@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import {
   Shield, Radio, Activity, Truck, Heart, Construction,
   LayoutDashboard, ChevronLeft, ChevronRight, Bell, Wifi, Satellite, Building2,
-  Sun, Moon, Clock, LogIn, LogOut, Zap, Flame
+  Sun, Moon, Clock, LogIn, LogOut, Zap, Flame, Map
 } from 'lucide-react';
 import { signOut } from '@/lib/auth';
 import { useTheme } from './ThemeProvider';
@@ -12,14 +12,15 @@ import OfficialEmblem from './OfficialEmblem';
 
 const navItems = [
   { path: '/', label: 'Command Center', icon: LayoutDashboard, dept: 'command' },
-  { path: '/premier', label: "Prime Minister's Office", icon: Building2, dept: 'premier' },
-  { path: '/saps', label: 'LMPS', icon: Radio, dept: 'saps' },
+  { path: '/premier', label: "Premier's Office", icon: Building2, dept: 'premier' },
+  { path: '/saps', label: 'SAPS', icon: Radio, dept: 'saps' },
   { path: '/ems', label: 'EMS', icon: Activity, dept: 'ems' },
   { path: '/transport', label: 'Transport', icon: Truck, dept: 'transport' },
   { path: '/health', label: 'Health', icon: Heart, dept: 'health' },
   { path: '/roads', label: 'Roads Agency', icon: Construction, dept: 'roads' },
-  { path: '/electricity', label: 'LEC — Electricity', icon: Zap, dept: 'electricity' },
+  { path: '/electricity', label: 'Eskom — Electricity', icon: Zap, dept: 'electricity' },
   { path: '/fire', label: 'Fire & Rescue', icon: Flame, dept: 'fire' },
+  { path: '/border-patrol', label: 'Border Patrol', icon: Map, dept: 'border' },
 ];
 
 export default function DashboardLayout({ children, title, deptBg }: { children: React.ReactNode; title: string; deptBg?: string }) {
@@ -45,7 +46,7 @@ export default function DashboardLayout({ children, title, deptBg }: { children:
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="overflow-hidden">
               <p className="text-[10px] font-display font-bold text-primary leading-tight tracking-wider">NATIONAL SAFETY</p>
               <p className="text-[9px] font-display font-bold text-accent leading-tight tracking-widest">INTELLIGENCE</p>
-              <p className="text-[8px] text-muted-foreground leading-tight mt-0.5">Maseru • Kingdom of Lesotho</p>
+              <p className="text-[8px] text-muted-foreground leading-tight mt-0.5">Polokwane • Limpopo, South Africa</p>
             </motion.div>
           )}
         </div>
@@ -72,7 +73,7 @@ export default function DashboardLayout({ children, title, deptBg }: { children:
 
         {!collapsed && (
           <div className="px-3 py-2 mx-2 mb-2 rounded-md bg-primary/5 border border-primary/10">
-            <p className="text-[9px] font-display text-primary uppercase tracking-widest">Kingdom of Lesotho 🇱🇸</p>
+            <p className="text-[9px] font-display text-primary uppercase tracking-widest">Limpopo Province 🇿🇦</p>
             <p className="text-[8px] text-muted-foreground mt-0.5">Zero avoidable deaths by 2030</p>
           </div>
         )}
@@ -128,7 +129,7 @@ export default function DashboardLayout({ children, title, deptBg }: { children:
             </button>
             <span className="flex items-center gap-1">
               <Clock className="w-3 h-3 text-accent" />
-              {time.toLocaleTimeString('en-LS', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+              {time.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
             </span>
             <span className="flex items-center gap-1">
               <Wifi className="w-3 h-3 text-success" /> Network

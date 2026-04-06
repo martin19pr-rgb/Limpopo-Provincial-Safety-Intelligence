@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import DashboardLayout from '@/components/DashboardLayout';
-import SmartProvincialMap from '@/components/SmartProvincialMap';
 import { mockWorkers } from '@/data/mockData';
 import { playAlertSound, unlockAudio } from '@/lib/alertSound';
 import {
@@ -10,41 +11,133 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-const SUBSTATIONS = 12;
+const SUBSTATIONS = 14;
 const GRID_UPTIME = 97.4;
 const ACTIVE_FAULTS = 3;
 const LOAD_CAPACITY = 78;
 
 const gridFaults = [
-  { id: 'F-001', location: 'Maseru North Substation', type: 'Transformer Overload', severity: 'critical', affected: '4,200 households', eta: '45 min', time: '8m ago' },
-  { id: 'F-002', location: 'Leribe District Feeder', type: 'Line Fault', severity: 'high', affected: '1,800 households', eta: '1h 20m', time: '22m ago' },
-  { id: 'F-003', location: 'Teyateyaneng Zone 3', type: 'Blown Fuse', severity: 'medium', affected: '320 households', eta: '30 min', time: '41m ago' },
-  { id: 'F-004', location: 'Mafeteng South Grid', type: 'Voltage Dip', severity: 'low', affected: '0 households', eta: 'Monitoring', time: '1h ago' },
+  { id: 'F-001', location: 'Polokwane North Substation', type: 'Transformer Overload', severity: 'critical', affected: '4,200 households', eta: '45 min', time: '8m ago' },
+  { id: 'F-002', location: 'Tzaneen District Feeder', type: 'Line Fault', severity: 'high', affected: '1,800 households', eta: '1h 20m', time: '22m ago' },
+  { id: 'F-003', location: 'Giyani Zone 3', type: 'Blown Fuse', severity: 'medium', affected: '320 households', eta: '30 min', time: '41m ago' },
+  { id: 'F-004', location: 'Mokopane South Grid', type: 'Voltage Dip', severity: 'low', affected: '0 households', eta: 'Monitoring', time: '1h ago' },
 ];
 
 const substationStatus = [
-  { name: 'Maseru Main (132kV)', load: 84, capacity: 100, status: 'warning', voltage: '131.8 kV' },
-  { name: 'Leribe Substation', load: 62, capacity: 100, status: 'good', voltage: '66.1 kV' },
-  { name: 'Mafeteng Grid', load: 71, capacity: 100, status: 'good', voltage: '33.2 kV' },
-  { name: "Mohale's Hoek Sub", load: 55, capacity: 100, status: 'good', voltage: '33.0 kV' },
-  { name: 'Butha-Buthe North', load: 91, capacity: 100, status: 'critical', voltage: '66.4 kV' },
-  { name: 'Teyateyaneng East', load: 68, capacity: 100, status: 'good', voltage: '33.1 kV' },
+  { name: 'Polokwane Main (132kV)', load: 84, capacity: 100, status: 'warning', voltage: '131.8 kV', lat: -23.91, lng: 29.47 },
+  { name: 'Tzaneen Substation (66kV)', load: 62, capacity: 100, status: 'good', voltage: '66.1 kV', lat: -23.84, lng: 30.16 },
+  { name: 'Mokopane Grid (33kV)', load: 71, capacity: 100, status: 'good', voltage: '33.2 kV', lat: -24.19, lng: 28.99 },
+  { name: 'Lephalale Sub (33kV)', load: 55, capacity: 100, status: 'good', voltage: '33.0 kV', lat: -23.68, lng: 27.71 },
+  { name: 'Musina North (66kV)', load: 91, capacity: 100, status: 'critical', voltage: '66.4 kV', lat: -22.35, lng: 29.99 },
+  { name: 'Giyani East (33kV)', load: 68, capacity: 100, status: 'good', voltage: '33.1 kV', lat: -23.30, lng: 30.72 },
+  { name: 'Thohoyandou (33kV)', load: 77, capacity: 100, status: 'warning', voltage: '33.0 kV', lat: -22.95, lng: 30.48 },
+  { name: 'Burgersfort (33kV)', load: 60, capacity: 100, status: 'good', voltage: '33.1 kV', lat: -24.65, lng: 30.33 },
 ];
 
 const loadShedSchedule = [
-  { area: 'Maseru South — Zone 4', startTime: '10:00', endTime: '12:30', stage: 'Stage 2', status: 'active' },
-  { area: 'Leribe North — Zone 7', startTime: '14:00', endTime: '16:30', stage: 'Stage 1', status: 'scheduled' },
-  { area: 'Butha-Buthe East — Zone 2', startTime: '18:00', endTime: '20:00', stage: 'Stage 3', status: 'scheduled' },
+  { area: 'Polokwane South — Zone 4', startTime: '10:00', endTime: '12:30', stage: 'Stage 2', status: 'active' },
+  { area: 'Tzaneen North — Zone 7', startTime: '14:00', endTime: '16:30', stage: 'Stage 1', status: 'scheduled' },
+  { area: 'Musina East — Zone 2', startTime: '18:00', endTime: '20:00', stage: 'Stage 3', status: 'scheduled' },
 ];
 
 const repairTeams = [
-  { id: 'RT-001', name: 'LEC Crew Alpha', location: 'Maseru North Substation', task: 'Transformer replacement', eta: 'On site', status: 'active' },
-  { id: 'RT-002', name: 'LEC Crew Bravo', location: 'Leribe Feeder Line', task: 'Line fault repair', eta: '18 min', status: 'en route' },
-  { id: 'RT-003', name: 'LEC Crew Charlie', location: 'Teyateyaneng Zone 3', task: 'Fuse replacement', eta: 'On site', status: 'active' },
-  { id: 'RT-004', name: 'LEC Inspection Unit', location: 'Butha-Buthe Grid', task: 'Load monitoring', eta: '35 min', status: 'en route' },
+  { id: 'RT-001', name: 'Eskom Crew Alpha', location: 'Polokwane North Substation', task: 'Transformer replacement', eta: 'On site', status: 'active' },
+  { id: 'RT-002', name: 'Eskom Crew Bravo', location: 'Tzaneen Feeder Line', task: 'Line fault repair', eta: '18 min', status: 'en route' },
+  { id: 'RT-003', name: 'Eskom Crew Charlie', location: 'Giyani Zone 3', task: 'Fuse replacement', eta: 'On site', status: 'active' },
+  { id: 'RT-004', name: 'Eskom Inspection Unit', location: 'Musina Grid', task: 'Load monitoring', eta: '35 min', status: 'en route' },
 ];
 
 const electricityWorkers = mockWorkers.filter(w => w.department === 'electricity');
+
+// Eskom Limpopo grid lines (transmission lines between substations)
+const gridLines = [
+  { from: { lat: -23.91, lng: 29.47 }, to: { lat: -23.84, lng: 30.16 }, label: 'Polokwane–Tzaneen 132kV', status: 'active' },
+  { from: { lat: -23.91, lng: 29.47 }, to: { lat: -24.19, lng: 28.99 }, label: 'Polokwane–Mokopane 66kV', status: 'active' },
+  { from: { lat: -23.91, lng: 29.47 }, to: { lat: -23.68, lng: 27.71 }, label: 'Polokwane–Lephalale 66kV', status: 'active' },
+  { from: { lat: -22.35, lng: 29.99 }, to: { lat: -22.95, lng: 30.48 }, label: 'Musina–Thohoyandou 66kV', status: 'critical' },
+  { from: { lat: -22.95, lng: 30.48 }, to: { lat: -23.30, lng: 30.72 }, label: 'Thohoyandou–Giyani 33kV', status: 'active' },
+  { from: { lat: -23.84, lng: 30.16 }, to: { lat: -23.30, lng: 30.72 }, label: 'Tzaneen–Giyani 33kV', status: 'active' },
+  { from: { lat: -23.84, lng: 30.16 }, to: { lat: -24.65, lng: 30.33 }, label: 'Tzaneen–Burgersfort 33kV', status: 'active' },
+  { from: { lat: -24.19, lng: 28.99 }, to: { lat: -24.65, lng: 30.33 }, label: 'Mokopane–Burgersfort 33kV', status: 'active' },
+  { from: { lat: -23.91, lng: 29.47 }, to: { lat: -22.35, lng: 29.99 }, label: 'Polokwane–Musina 132kV', status: 'warning' },
+];
+
+function EskomGridMap() {
+  const mapRef = useRef<L.Map | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current || mapRef.current) return;
+
+    const map = L.map(containerRef.current, { zoomControl: false, attributionControl: false }).setView([-23.5, 29.5], 7);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(map);
+
+    const style = document.createElement('style');
+    style.textContent = `.eskom-tooltip { font-family:'JetBrains Mono',monospace !important; font-size:9px !important; background:rgba(0,0,0,0.9) !important; border:1px solid #D4AF3740 !important; color:#f39c12 !important; border-radius:6px !important; padding:3px 6px !important; } .leaflet-popup-content-wrapper { background:rgba(15,20,25,0.95) !important; border:1px solid #333 !important; border-radius:8px !important; color:#e8e6e3 !important; } .leaflet-popup-tip { background:rgba(15,20,25,0.95) !important; }`;
+    document.head.appendChild(style);
+
+    // Draw grid lines
+    gridLines.forEach(line => {
+      const color = line.status === 'critical' ? '#e74c3c' : line.status === 'warning' ? '#f39c12' : '#f1c40f';
+      const dashArray = line.status === 'critical' ? '4 4' : line.status === 'warning' ? '8 4' : undefined;
+      L.polyline([[line.from.lat, line.from.lng], [line.to.lat, line.to.lng]], {
+        color,
+        weight: 2.5,
+        opacity: 0.8,
+        dashArray,
+      }).bindTooltip(line.label, { className: 'eskom-tooltip' }).addTo(map);
+    });
+
+    // Draw substation markers
+    substationStatus.forEach(sub => {
+      const color = sub.status === 'critical' ? '#e74c3c' : sub.status === 'warning' ? '#f39c12' : '#f1c40f';
+      const icon = L.divIcon({
+        className: 'custom-marker',
+        html: `<div style="position:relative;"><div style="width:16px;height:16px;background:${color};border:2px solid #fff;border-radius:3px;box-shadow:0 0 10px ${color}80;display:flex;align-items:center;justify-content:center;"><span style="font-size:7px;color:#000;font-weight:900;">⚡</span></div></div>`,
+        iconSize: [16, 16],
+        iconAnchor: [8, 8],
+      });
+      L.marker([sub.lat, sub.lng], { icon })
+        .bindPopup(`<div style="font-family:'JetBrains Mono',monospace;font-size:11px;"><b>⚡ ${sub.name}</b><br>Load: <span style="color:${color};">${sub.load}%</span><br>Voltage: ${sub.voltage}<br>Status: <span style="color:${color};">${sub.status.toUpperCase()}</span></div>`)
+        .addTo(map);
+    });
+
+    // Latitude/longitude grid lines (visual grid overlay)
+    for (let lat = -25; lat <= -22; lat += 0.5) {
+      L.polyline([[lat, 27], [lat, 32]], { color: '#f1c40f08', weight: 1, opacity: 0.3 }).addTo(map);
+    }
+    for (let lng = 27; lng <= 32; lng += 0.5) {
+      L.polyline([[-25, lng], [-22, lng]], { color: '#f1c40f08', weight: 1, opacity: 0.3 }).addTo(map);
+    }
+
+    mapRef.current = map;
+    return () => { map.remove(); mapRef.current = null; style.remove(); };
+  }, []);
+
+  return (
+    <div className="glass-card p-0 overflow-hidden">
+      <div className="flex items-center justify-between p-3 border-b border-border">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-yellow-400 pulse-live" />
+          <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Eskom Grid Map — Limpopo</h3>
+        </div>
+        <div className="flex items-center gap-2">
+          {[
+            { color: '#e74c3c', label: 'Critical' },
+            { color: '#f39c12', label: 'Warning' },
+            { color: '#f1c40f', label: 'Active' },
+          ].map(l => (
+            <span key={l.label} className="flex items-center gap-1 text-[9px] font-display text-muted-foreground">
+              <span className="w-6 h-0.5 inline-block" style={{ background: l.color }} />{l.label}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div ref={containerRef} style={{ height: 420 }} />
+    </div>
+  );
+}
 
 export default function ElectricityDashboard() {
   const [tab, setTab] = useState<'overview' | 'faults' | 'substations' | 'shedding' | 'crews'>('overview');
@@ -61,7 +154,7 @@ export default function ElectricityDashboard() {
   }, []);
 
   const tabs = [
-    { key: 'overview', label: 'Overview', icon: Map },
+    { key: 'overview', label: 'Grid Map', icon: Map },
     { key: 'faults', label: 'Grid Faults', icon: AlertTriangle },
     { key: 'substations', label: 'Substations', icon: Gauge },
     { key: 'shedding', label: 'Load Shedding', icon: Clock },
@@ -76,10 +169,10 @@ export default function ElectricityDashboard() {
   };
 
   const loadColor = (load: number) =>
-    load >= 90 ? 'bg-destructive' : load >= 75 ? 'bg-accent' : 'bg-primary';
+    load >= 90 ? 'bg-destructive' : load >= 75 ? 'bg-accent' : 'bg-yellow-400';
 
   return (
-    <DashboardLayout title="LEC — Electricity Command Centre" deptBg="dept-bg-roads">
+    <DashboardLayout title="Eskom — Limpopo Grid Command Centre" deptBg="dept-bg-roads">
       <div className="space-y-5">
 
         {/* Hero */}
@@ -96,8 +189,8 @@ export default function ElectricityDashboard() {
                 <Zap className="w-7 h-7 text-yellow-400" />
               </motion.div>
               <div>
-                <h1 className="font-display text-sm font-bold text-foreground tracking-wider">LEC — NATIONAL GRID COMMAND</h1>
-                <p className="text-[10px] text-muted-foreground font-display mt-0.5">LESOTHO ELECTRICITY COMPANY • AI-MONITORED • REAL-TIME</p>
+                <h1 className="font-display text-sm font-bold text-foreground tracking-wider">ESKOM — LIMPOPO GRID COMMAND</h1>
+                <p className="text-[10px] text-muted-foreground font-display mt-0.5">ESKOM SOC LTD • LIMPOPO OPERATING UNIT • AI-MONITORED • REAL-TIME</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -161,25 +254,25 @@ export default function ElectricityDashboard() {
           <motion.div key={tab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
 
             {tab === 'overview' && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <SmartProvincialMap />
+              <div className="space-y-4">
+                <EskomGridMap />
                 <div className="dashboard-card">
                   <div className="flex items-center gap-2 mb-4">
                     <Brain className="w-4 h-4 text-yellow-400" />
                     <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">AI Grid Analysis</h3>
                   </div>
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {[
-                      { insight: 'Butha-Buthe substation at 91% — trip risk within 2hrs without load reduction', severity: 'critical' },
-                      { insight: 'Evening peak demand forecast: +18% above current load 17:00–20:00', severity: 'high' },
-                      { insight: 'Leribe feeder restoration on schedule — estimated 14:20 reconnection', severity: 'medium' },
-                      { insight: 'Maseru Main grid stable. Voltage within ±2% tolerance bands', severity: 'low' },
+                      { insight: 'Musina substation at 91% — trip risk within 2hrs without load reduction. Stage 3 recommended.', severity: 'critical' },
+                      { insight: 'Evening peak demand forecast: +18% above current load 17:00–20:00. Pre-emptive shedding advised.', severity: 'high' },
+                      { insight: 'Tzaneen feeder restoration on schedule — estimated 14:20 reconnection for 1,800 households.', severity: 'medium' },
+                      { insight: 'Polokwane Main grid stable. Voltage within ±2% tolerance. N1 corridor feeders nominal.', severity: 'low' },
                     ].map((item, i) => (
-                      <div key={i} className={`p-3 rounded-lg border text-[11px] ${
+                      <div key={i} className={`p-3 rounded-lg border text-[11px] leading-relaxed ${
                         item.severity === 'critical' ? 'bg-destructive/10 border-destructive/30 text-destructive' :
                         item.severity === 'high' ? 'bg-orange-400/10 border-orange-400/30 text-orange-400' :
                         item.severity === 'medium' ? 'bg-accent/10 border-accent/30 text-accent' :
-                        'bg-primary/10 border-primary/30 text-primary'
+                        'bg-yellow-400/10 border-yellow-400/30 text-yellow-400'
                       }`}>
                         {item.insight}
                       </div>
@@ -219,10 +312,10 @@ export default function ElectricityDashboard() {
                       </div>
                     </div>
                     <button
-                      onClick={() => { playAlertSound('dispatch'); toast.success(`Dispatch confirmed — ${fault.id}`); }}
+                      onClick={() => { playAlertSound('dispatch'); toast.success(`Eskom crew dispatch confirmed — ${fault.id}`); }}
                       className="mt-2 w-full py-1.5 rounded-lg bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 text-[10px] font-display hover:bg-yellow-400/20 transition-colors"
                     >
-                      DISPATCH REPAIR CREW
+                      DISPATCH ESKOM REPAIR CREW
                     </button>
                   </motion.div>
                 ))}
@@ -231,7 +324,7 @@ export default function ElectricityDashboard() {
 
             {tab === 'substations' && (
               <div className="space-y-3">
-                <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2">Substation Load Monitor</h3>
+                <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2">Substation Load Monitor — Limpopo</h3>
                 {substationStatus.map((sub, i) => (
                   <motion.div key={sub.name} className="dashboard-card" initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
                     <div className="flex items-center justify-between mb-2">
@@ -242,7 +335,7 @@ export default function ElectricityDashboard() {
                       <span className={`px-2 py-0.5 rounded-full text-[8px] font-display border ${
                         sub.status === 'critical' ? 'bg-destructive/10 border-destructive/30 text-destructive' :
                         sub.status === 'warning' ? 'bg-accent/10 border-accent/30 text-accent' :
-                        'bg-primary/10 border-primary/30 text-primary'
+                        'bg-yellow-400/10 border-yellow-400/30 text-yellow-400'
                       }`}>{sub.load}% LOAD</span>
                     </div>
                     <div className="h-2 rounded-full bg-secondary/50 overflow-hidden">
@@ -262,7 +355,7 @@ export default function ElectricityDashboard() {
               <div className="space-y-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-4 h-4 text-accent" />
-                  <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Load Shedding Schedule</h3>
+                  <h3 className="font-display text-xs font-bold text-foreground uppercase tracking-widest">Load Shedding Schedule — Limpopo</h3>
                 </div>
                 {loadShedSchedule.map(sched => (
                   <motion.div key={sched.area} className="dashboard-card border-l-4 border-l-accent" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -281,7 +374,7 @@ export default function ElectricityDashboard() {
                   </motion.div>
                 ))}
                 <div className="dashboard-card bg-yellow-400/5 border-yellow-400/20">
-                  <p className="text-[10px] font-display text-yellow-400">⚡ Stage definitions: Stage 1 = 1h slot, Stage 2 = 2h slot, Stage 3 = emergency 2h slot.</p>
+                  <p className="text-[10px] font-display text-yellow-400">⚡ Eskom Stage definitions: Stage 1 = 1h slot, Stage 2 = 2h slot, Stage 3 = emergency 2h slot.</p>
                   <p className="text-[9px] text-muted-foreground mt-1">SMS alerts automatically dispatched to registered households 30 minutes before shedding begins.</p>
                 </div>
               </div>
@@ -289,7 +382,7 @@ export default function ElectricityDashboard() {
 
             {tab === 'crews' && (
               <div className="space-y-3">
-                <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2">LEC Repair Crews</h3>
+                <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2">Eskom Repair Crews — Limpopo</h3>
                 {repairTeams.map(crew => (
                   <motion.div key={crew.id} className="dashboard-card" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                     <div className="flex items-center justify-between">
@@ -308,7 +401,7 @@ export default function ElectricityDashboard() {
                   </motion.div>
                 ))}
                 <div className="dashboard-card">
-                  <h4 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">LEC Personnel</h4>
+                  <h4 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Eskom Personnel</h4>
                   {electricityWorkers.length > 0 ? electricityWorkers.map(worker => (
                     <div key={worker.id} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                       <div>

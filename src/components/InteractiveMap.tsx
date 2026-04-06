@@ -14,7 +14,7 @@ export default function InteractiveMap() {
     );
   };
 
-  // Map bounds for Lesotho (simplified projection)
+  // Map bounds for Limpopo Province (simplified projection)
   const mapBounds = { minLat: -30.7, maxLat: -28.5, minLng: 27.0, maxLng: 29.5 };
 
   const toMapPos = (lat: number, lng: number) => ({
@@ -30,7 +30,7 @@ export default function InteractiveMap() {
     <div className="dashboard-card">
       <div className="flex items-center justify-between mb-3">
         <h3 className="font-display text-xs font-bold text-muted-foreground uppercase tracking-widest">
-          Live Tracking Map — Kingdom of Lesotho
+          Live Tracking Map — Limpopo Province, South Africa
         </h3>
         <div className="flex gap-1">
           {([

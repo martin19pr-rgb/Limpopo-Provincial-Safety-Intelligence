@@ -19,7 +19,7 @@ const LIDAR_SENSORS = 8;
 const SIGNAL_OVERRIDE_COUNT = 3;
 
 const aiPredictions = [
-  { id: 'AI-T01', road: 'A1 — KM 8–18 Maseru', prediction: 'Traffic surge in 14 min', action: 'Green wave active', confidence: 91, severity: 'high' },
+  { id: 'AI-T01', road: 'N1 — KM 8–18 Polokwane', prediction: 'Traffic surge in 14 min', action: 'Green wave active', confidence: 91, severity: 'high' },
   { id: 'AI-T02', road: 'A2 Mountain Pass', prediction: 'Fog advisory — reduce speed', action: 'LED sign updated', confidence: 88, severity: 'medium' },
   { id: 'AI-T03', road: 'Kingsway CBD Ring Road', prediction: 'School rush peak — 15:00', action: 'Signal re-timed', confidence: 94, severity: 'medium' },
   { id: 'AI-T04', road: 'A2 Highland Bridge', prediction: 'Flood risk — bridge closure', action: 'Road closed signal sent', confidence: 96, severity: 'critical' },
