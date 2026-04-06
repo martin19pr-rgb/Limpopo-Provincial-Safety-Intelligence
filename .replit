@@ -41,6 +41,13 @@ outputType = "webview"
 VITE_SUPABASE_URL = "https://bwvojnpprscawrsejmrr.supabase.co"
 VITE_SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3dm9qbnBwcnNjYXdyc2VqbXJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2NDU2NjEsImV4cCI6MjA4OTIyMTY2MX0.wryYAdL5KpsU0MZEwisYfJvSF-HEJw6sp3icxUgPZ_c"
 VITE_SUPABASE_PROJECT_ID = "bwvojnpprscawrsejmrr"
+VITE_FIREBASE_API_KEY = "AIzaSyDXB6eNiNJEU0RdGTwMSwWSBXiJ8kWiNOk"
+VITE_FIREBASE_AUTH_DOMAIN = "provincial-safety-dashboard.firebaseapp.com"
+VITE_FIREBASE_PROJECT_ID = "provincial-safety-dashboard"
+VITE_FIREBASE_STORAGE_BUCKET = "provincial-safety-dashboard.firebasestorage.app"
+VITE_FIREBASE_MESSAGING_SENDER_ID = "782632363879"
+VITE_FIREBASE_APP_ID = "1:782632363879:web:f9758ef4c5b274a601b1c2"
+VITE_FIREBASE_MEASUREMENT_ID = "G-DTN0SVCZES"
 
 [[ports]]
 localPort = 5000

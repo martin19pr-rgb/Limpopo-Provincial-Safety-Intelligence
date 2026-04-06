@@ -4,13 +4,13 @@ import { getFirestore, collection, onSnapshot, addDoc, serverTimestamp, query, o
 import { getDatabase, ref, onValue, set, push } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_GOOGLE_API_KEY ?? "AIzaSyDXB6eNiNJEU0RdGTwMSwWSBXiJ8kWiNOk",
-  authDomain: "provincial-safety-dashboard.firebaseapp.com",
-  projectId: "provincial-safety-dashboard",
-  storageBucket: "provincial-safety-dashboard.firebasestorage.app",
-  messagingSenderId: "782632363879",
-  appId: "1:782632363879:web:f9758ef4c5b274a601b1c2",
-  measurementId: "G-DTN0SVCZES",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
